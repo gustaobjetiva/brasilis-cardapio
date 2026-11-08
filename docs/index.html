@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#F3EADC">
+<title>Brasilis Gourmet | Pizzas de fermentação natural</title>
+<meta name="description" content="Pizza de fermentação natural, pronta em 5 minutos na airfryer. Peça pelo WhatsApp.">
+<!-- Prévia do link no WhatsApp/Instagram. Troque a URL quando estiver no domínio final. -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brasilis Gourmet | Cardápio">
+<meta property="og:description" content="Pizza de fermentação natural, pronta em 5 minutos. Peça pelo WhatsApp.">
+<meta property="og:image" content="https://gustaobjetiva.github.io/brasilis-cardapio/img/logo.jpg">
+<link rel="icon" href="img/icone.png">
+<link rel="apple-touch-icon" href="img/icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Montserrat:wght@400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1B5E3B; --terracota: #C46A3A; --sol: #F2C94C; --areia: #EADDCA; --madeira: #8B5E3C;
+    /* Tema fixo: fundo verde escuro em qualquer celular */
+    --bg: #14231B; --surface: #1C3026; --ink: #F3EBDC; --ink-soft: #B9B09E; --line: #2E4538;
+    --accent: #F2C94C; --accent-ink: #1B2A20; --price: #F0A57A;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --script: "Caveat", "Segoe Script", "Bradley Hand", cursive;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 15px; line-height: 1.5;
+    padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+  }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--terracota); outline-offset: 2px; }
+
+  header {
+    background: #F3EADC; color: #24211C; text-align: center;
+    padding: calc(14px + env(safe-area-inset-top, 0px)) 20px 22px;
+    border-bottom: 4px solid var(--verde);
+  }
+  header img { display: block; width: min(320px, 84%); height: auto; margin: 0 auto; }
+  .assinatura { font-family: var(--script); font-size: clamp(17px, 5.4vw, 23px); color: var(--madeira); margin: 8px auto 0; line-height: 1.15; white-space: nowrap; }
+
+  main { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+  .intro { padding: 26px 4px 6px; }
+  .intro h1 { font-family: var(--serif); font-weight: 700; font-size: 28px; line-height: 1.15; margin: 0 0 8px; color: var(--accent); letter-spacing: -.01em; }
+  .intro p { margin: 0; color: var(--ink-soft); max-width: 46ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+  .tags li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 500; }
+
+  .secao { margin-top: 30px; }
+  .secao-titulo { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 2px solid var(--terracota); padding-bottom: 8px; margin-bottom: 4px; }
+  .secao-titulo h2 { font-family: var(--serif); font-size: 22px; margin: 0; }
+  .secao-titulo span { font-size: 13px; color: var(--ink-soft); }
+  .secao.premium .secao-titulo { border-bottom-color: var(--sol); }
+
+  .item { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .item .foto { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; background: var(--line); }
+  .midia { position: relative; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; background: var(--line); }
+  .midia .foto, .midia video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 0; aspect-ratio: auto; }
+  .midia video { opacity: 0; transition: opacity .5s ease; }
+  .midia.pronto video { opacity: 1; }
+  .carrossel { position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; background: var(--line); touch-action: pan-y; }
+  .carrossel .slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .7s ease; }
+  .carrossel .slide.ativo { opacity: 1; }
+  .pontos { position: absolute; left: 0; right: 0; bottom: 4px; display: flex; justify-content: center; gap: 2px; }
+  .ponto { position: relative; width: 24px; height: 24px; border: 0; background: transparent; padding: 0; cursor: pointer; }
+  .ponto::before { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: rgba(255,255,255,.65); box-shadow: 0 0 3px rgba(0,0,0,.55); transition: transform .2s ease, background .2s ease; }
+  .ponto.ativo::before { background: #fff; transform: scale(1.35); }
+  .item .corpo { padding: 12px 2px 0; }
+  .item h3 { font-family: var(--serif); font-size: 18px; margin: 0 0 2px; line-height: 1.2; }
+  .item p { margin: 0; color: var(--ink-soft); font-size: 14px; }
+  .rodape-item { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 10px; }
+  .com-selo { position: relative; }
+  .com-selo.esgotada > .midia, .com-selo.esgotada > .foto { filter: grayscale(.9) brightness(.55); }
+  .selo-novo.esgotado-selo { background: #24211C; color: #F3EBDC; border: 2px solid #F3EBDC; transform: rotate(-3deg); font-size: 14px; letter-spacing: .02em; }
+  .item.esgotado h3, .item.esgotado p { opacity: .6; }
+  .item.esgotado .preco { opacity: .55; text-decoration: line-through; }
+  .tag-esgotado { display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; border: 2px solid var(--line); color: var(--ink-soft); font-weight: 600; font-size: 14px; }
+  .selo-novo { position: absolute; top: 12px; left: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 6px; background: #F2C94C; color: #1B3A28; font-weight: 700; font-size: 13px; padding: 6px 12px 6px 10px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.4); transform: rotate(-3deg); }
+  .precos { display: grid; gap: 2px; }
+  .preco { font-weight: 600; color: var(--price); font-size: 16px; line-height: 1.25; }
+  .preco small { font-weight: 500; font-size: 12px; color: var(--ink-soft); }
+  .preco.cartao { font-size: 14px; color: var(--ink); }
+
+  .btn-add {
+    background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 999px;
+    padding: 9px 18px; font-weight: 600; font-size: 14px; cursor: pointer; min-height: 40px;
+  }
+  .stepper { display: inline-flex; align-items: center; border: 2px solid var(--accent); border-radius: 999px; overflow: hidden; }
+  .stepper button { background: transparent; border: 0; width: 40px; height: 36px; font-size: 20px; font-weight: 600; cursor: pointer; color: var(--accent); touch-action: manipulation; }
+  .stepper output { min-width: 28px; text-align: center; font-weight: 600; }
+
+  .aviso { margin: 28px 0 0; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--sol); border-radius: 8px; font-size: 13px; color: var(--ink-soft); }
+
+  /* Banner: entrega sem taxa no mês de lançamento */
+  .entrega { position: relative; margin-top: 22px; border-radius: 16px; background: #F2C94C; color: #1E3A28; overflow: hidden; }
+  .entrega::before, .entrega::after { content: ""; position: absolute; top: 80px; width: 22px; height: 22px; border-radius: 50%; background: var(--bg); }
+  .entrega::before { left: -11px; }
+  .entrega::after { right: -11px; }
+  .cena { border-bottom: 2px dashed rgba(27,94,59,.5); padding: 10px 0 0; height: 91px; }
+  .cena svg { display: block; width: 100%; height: 100%; }
+  .entrega-corpo { display: flex; align-items: center; gap: 14px; padding: 18px 18px 20px; }
+  .entrega-texto { flex: 1; min-width: 0; }
+  .entrega-titulo { font-family: var(--serif); font-weight: 700; font-size: 27px; line-height: 1.1; margin: 0 0 6px; }
+  .entrega-sub { margin: 0; font-size: 14px; line-height: 1.4; max-width: 28ch; }
+  .selo { flex: none; width: 88px; height: 88px; border-radius: 50%; background: #1B5E3B; color: #F2C94C; display: grid; place-content: center; text-align: center; transform: rotate(-8deg); outline: 2px dashed #F2C94C; outline-offset: -6px; }
+  .selo b { font-family: var(--serif); font-size: 28px; line-height: 1; }
+  .selo span { font-size: 11px; line-height: 1.15; max-width: 9ch; margin-top: 3px; }
+  .entrega.anim .scooter { transform: translateX(-300px); opacity: 0; }
+  .entrega.anim .selo { transform: rotate(-40deg) scale(0); }
+  .entrega.anim.andar .scooter { animation: chegar 1.5s cubic-bezier(.16,.8,.3,1) forwards; }
+  .entrega.anim.andar .selo { animation: carimbo .5s cubic-bezier(.3,1.5,.5,1) 1.15s forwards; }
+  @keyframes chegar { from { transform: translateX(-300px); opacity: 0; } 15% { opacity: 1; } to { transform: none; opacity: 1; } }
+  @keyframes carimbo { from { transform: rotate(-40deg) scale(0); } to { transform: rotate(-8deg) scale(1); } }
+  .taxa-zero { margin: 12px 0 0; padding: 9px 12px; border-radius: 10px; background: rgba(242,201,76,.14); border: 1px dashed #F2C94C; color: #F2C94C; font-size: 13px; font-weight: 600; }
+
+  .contato { margin: 28px 0 0; text-align: center; }
+  .contato p { margin: 0 0 12px; color: var(--ink-soft); font-size: 14px; }
+  .btn-wa { display: inline-flex; align-items: center; gap: 10px; background: #1FA855; color: #fff; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 12px 22px; }
+
+  .wa-flutuante {
+    position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 15;
+    width: 58px; height: 58px; border-radius: 50%; background: #1FA855; display: grid; place-items: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,.28); transition: bottom .25s ease;
+  }
+  body.com-pedido .wa-flutuante { bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+  .resumo { padding-top: 8px; font-size: 14px; }
+  .resumo .r { display: flex; justify-content: space-between; padding: 3px 0; color: var(--ink-soft); }
+  .resumo .desc { color: var(--sol); font-weight: 600; }
+  .resumo .dica { margin: 6px 0 0; padding: 8px 10px; border-radius: 8px; background: var(--surface); border: 1px dashed var(--terracota); font-size: 13px; }
+
+  /* Barra do pedido */
+  .barra {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(to top, var(--bg) 70%, transparent);
+    transform: translateY(120%); transition: transform .25s ease;
+  }
+  .barra.visivel { transform: none; }
+  .barra button {
+    display: flex; width: 100%; max-width: 608px; margin: 0 auto; align-items: center; justify-content: space-between;
+    background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 14px; padding: 15px 18px;
+    font-weight: 600; font-size: 16px; cursor: pointer; box-shadow: 0 6px 18px rgba(27,94,59,.28);
+  }
+
+  /* Painel do pedido */
+  .fundo { position: fixed; inset: 0; background: rgba(20,20,15,.55); z-index: 30; display: none; }
+  .fundo.aberto { display: block; }
+  .painel {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; max-height: 92%; overflow-y: auto; overscroll-behavior: contain;
+    background: var(--bg); border-radius: 20px 20px 0 0; padding: 18px 18px calc(24px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(105%); transition: transform .28s ease, visibility .28s; max-width: 680px; margin: 0 auto;
+    visibility: hidden;
+  }
+  .painel.aberto { transform: none; visibility: visible; }
+  body.travado { overflow: hidden; }
+  .painel-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .painel-topo h2 { font-family: var(--serif); margin: 0; font-size: 22px; }
+  .fechar { background: transparent; border: 0; font-size: 28px; line-height: 1; cursor: pointer; padding: 4px 10px; }
+  .linha { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .linha .nome { font-weight: 500; }
+  .linha .sub { font-size: 13px; color: var(--ink-soft); }
+  .total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 600; padding: 14px 0 4px; }
+  .total span:last-child { color: var(--price); }
+  .vazio { color: var(--ink-soft); padding: 18px 0; }
+
+  fieldset { border: 0; padding: 0; margin: 16px 0 0; }
+  legend, label.rotulo { font-weight: 600; font-size: 14px; display: block; margin-bottom: 6px; padding: 0; }
+  .campo { margin-top: 14px; }
+  input[type=text], select, textarea {
+    width: 100%; background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; font-size: 16px;
+  }
+  textarea { min-height: 70px; resize: vertical; }
+  .opcoes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .opcoes label { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px; cursor: pointer; font-weight: 500; }
+  .opcoes input { accent-color: var(--accent); width: 18px; height: 18px; margin: 0; }
+  .opcoes label:has(input:checked) { border-color: var(--accent); }
+  .erro { color: #FFB4AB; font-size: 13px; margin-top: 6px; min-height: 1em; }
+
+  .enviar {
+    display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 18px;
+    background: #1FA855; color: #fff; text-decoration: none; border-radius: 14px; padding: 16px; font-weight: 600; font-size: 16px;
+  }
+  .nota { font-size: 12px; color: var(--ink-soft); text-align: center; margin: 10px 0 0; }
+
+  @media (prefers-reduced-motion: reduce) { .barra, .painel, .wa-flutuante, .carrossel .slide { transition: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <img alt="Brasilis Gourmet: sabores, cultura, encontros" width="720" height="533" src="img/logo.jpg" fetchpriority="high">
+  <p class="assinatura">Uma solução prática para quem tem<br>pressa de aproveitar bem a vida.</p>
+</header>
+
+<main>
+  <section class="intro">
+    <h1>Pizza de fermentação natural, pronta em 5 minutos</h1>
+    <p>As pizzas são congeladas: aqueça na airfryer por 5 minutos e sirva. Molho de tomate artesanal e recheios de primeira qualidade.</p>
+    <ul class="tags">
+      <li>Fermentação natural</li>
+      <li>20 cm</li>
+      <li>Molho artesanal</li>
+      <li>5 min na airfryer</li>
+    </ul>
+  </section>
+
+  <section class="entrega" id="entrega" aria-label="Entrega grátis durante o mês de lançamento">
+    <div class="cena">
+      <svg viewBox="0 0 340 82" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">
+        <line x1="0" y1="80" x2="340" y2="80" stroke="#1B5E3B" stroke-width="3" stroke-dasharray="14 10" opacity=".35"/>
+        <g>
+          <path d="M282 54 L301 36 L320 54 Z" fill="#C46A3A"/>
+          <rect x="286" y="54" width="30" height="26" fill="#1B5E3B"/>
+          <rect x="297" y="63" width="8" height="17" rx="1.5" fill="#F2C94C"/>
+        </g>
+        <g class="scooter" transform="translate(96 0)">
+          <g stroke="#1B5E3B" stroke-width="3" stroke-linecap="round" opacity=".5"><path d="M-66 36h42M-78 48h34M-60 60h36"/></g>
+          <rect x="14" y="20" width="38" height="28" rx="4" fill="#C46A3A"/>
+          <circle cx="33" cy="34" r="9" fill="#F6E2B3" stroke="#8B5E3C" stroke-width="1.5"/>
+          <circle cx="29" cy="31" r="1.8" fill="#C0392B"/><circle cx="36" cy="33" r="1.8" fill="#C0392B"/><circle cx="31" cy="38" r="1.8" fill="#1B5E3B"/>
+          <rect x="40" y="40" width="52" height="24" rx="12" fill="#1B5E3B"/>
+          <rect x="46" y="34" width="38" height="8" rx="4" fill="#24211C"/>
+          <rect x="82" y="56" width="40" height="8" rx="4" fill="#1B5E3B"/>
+          <path d="M118 58 L112 28" stroke="#1B5E3B" stroke-width="9" stroke-linecap="round"/>
+          <path d="M116 46 L136 66" stroke="#1B5E3B" stroke-width="6" stroke-linecap="round"/>
+          <path d="M103 25 L121 25" stroke="#24211C" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="122" cy="31" r="4" fill="#fff" stroke="#24211C" stroke-width="2"/>
+          <circle cx="52" cy="67" r="13" fill="#24211C"/><circle cx="52" cy="67" r="5" fill="#F2C94C"/>
+          <circle cx="136" cy="67" r="13" fill="#24211C"/><circle cx="136" cy="67" r="5" fill="#F2C94C"/>
+        </g>
+      </svg>
+    </div>
+    <div class="entrega-corpo">
+      <div class="entrega-texto">
+        <p class="entrega-titulo">Entrega grátis</p>
+        <p class="entrega-sub">Neste mês de lançamento, não cobramos taxa de entrega.</p>
+      </div>
+      <div class="selo" aria-hidden="true"><b>R$ 0</b><span>de taxa de entrega</span></div>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="t-novo">
+    <div class="secao-titulo"><h2 id="t-novo">Novidade</h2><span>20 cm</span></div>
+    <div id="lista-novo"></div>
+  </section>
+
+  <section class="secao" aria-labelledby="t-trad">
+    <div class="secao-titulo"><h2 id="t-trad">Tradicionais</h2><span>20 cm</span></div>
+    <div id="lista-trad"></div>
+  </section>
+
+  <section class="secao premium" aria-labelledby="t-prem">
+    <div class="secao-titulo"><h2 id="t-prem">Premium</h2><span>20 cm</span></div>
+    <div id="lista-prem"></div>
+  </section>
+
+  <p class="aviso">Retirada ou entrega, com horário combinado pelo WhatsApp. No mês de lançamento, a entrega não tem taxa. Todo pedido é confirmado pelo WhatsApp.</p>
+
+  <section class="contato">
+    <p>Dúvidas ou pedidos maiores? Chame a gente.</p>
+    <a class="btn-wa" data-wa href="#" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> Falar no WhatsApp</a>
+  </section>
+</main>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ico-wa" viewBox="0 0 32 32"><path fill="#fff" d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.7c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3z"/><path fill="#1FA855" transform="translate(8.6 8.6) scale(.64)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
+</svg>
+
+<a class="wa-flutuante" data-wa href="#" target="_blank" rel="noopener" aria-label="Falar com a Brasilis Gourmet no WhatsApp"><svg width="40" height="40" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg></a>
+
+<div class="barra" id="barra">
+  <button type="button" id="abrir-pedido" aria-haspopup="dialog">
+    <span id="barra-qtd">Ver pedido</span>
+    <span id="barra-total"></span>
+  </button>
+</div>
+
+<div class="fundo" id="fundo"></div>
+<section class="painel" id="painel" role="dialog" aria-modal="true" aria-labelledby="painel-titulo" aria-hidden="true">
+  <div class="painel-topo">
+    <h2 id="painel-titulo">Seu pedido</h2>
+    <button type="button" class="fechar" id="fechar" aria-label="Fechar pedido">&times;</button>
+  </div>
+  <div id="itens-pedido"></div>
+  <div class="campo" style="margin-top:6px">
+    <label class="rotulo" for="pagamento">Forma de pagamento</label>
+    <select id="pagamento">
+      <option>Pix</option>
+      <option>Dinheiro</option>
+      <option>Cartão de débito</option>
+      <option>Cartão de crédito</option>
+    </select>
+  </div>
+
+  <div class="resumo" id="resumo"></div>
+  <div class="total"><span id="rotulo-total">Total</span><span id="total-pedido">R$ 0,00</span></div>
+
+  <div class="campo">
+    <label class="rotulo" for="nome">Seu nome</label>
+    <input type="text" id="nome" autocomplete="name" placeholder="Como podemos te chamar?">
+  </div>
+
+  <fieldset>
+    <legend>Como você quer receber?</legend>
+    <div class="opcoes">
+      <label><input type="radio" name="modo" value="Retirada" checked> Retirada</label>
+      <label><input type="radio" name="modo" value="Entrega"> Entrega grátis</label>
+    </div>
+  </fieldset>
+  <p class="taxa-zero" id="taxa-zero" hidden>Entrega sem taxa neste mês de lançamento.</p>
+
+  <div class="campo" id="campo-endereco" hidden>
+    <label class="rotulo" for="endereco">Endereço de entrega</label>
+    <input type="text" id="endereco" autocomplete="street-address" placeholder="Rua, número, bairro e complemento">
+  </div>
+
+  <div class="campo">
+    <label class="rotulo" for="obs">Observações (opcional)</label>
+    <textarea id="obs" placeholder="Ex.: sem cebola, troco para R$ 100"></textarea>
+  </div>
+
+  <div class="erro" id="erro" role="alert"></div>
+  <a class="enviar" id="enviar" href="#" target="_blank" rel="noopener"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> Enviar pedido pelo WhatsApp</a>
+  <p class="nota">Ao tocar no botão, o WhatsApp abre com o pedido pronto. É só enviar.</p>
+</section>
+
+<script>
+  /* ============ CONFIGURAÇÃO: edite aqui ============ */
+  // Número com código do país e DDD, só dígitos.
+  const WHATSAPP = "5521998369779";
+
+  const PRECO_TRADICIONAL = 29;
+  const PRECO_PREMIUM = 33;
+  // Valores no débito ou crédito (Pix e dinheiro usam os valores acima)
+  const CARTAO_TRADICIONAL = 30.5;
+  const CARTAO_PREMIUM = 34.5;
+
+  // Promoção de lançamento ENCERRADA. Para reativar os combos, mude para true.
+  const PROMO_ATIVA = false;
+  const COMBO_2_TRADICIONAIS = 50;
+  const COMBO_TRADICIONAL_PREMIUM = 55;
+  const COMBO_2_PREMIUM = 60;
+
+  // Carrinho guardado no celular por no máximo este tempo (antes: para sempre)
+  const CARRINHO_HORAS = 3;
+
+  // foto: img/<id>.jpg | video: true = tem vídeo em video/<id>.mp4 | fotos: fotos extras (carrossel)
+  // Para marcar como esgotada: esgotado: true
+  const CARDAPIO = [
+    { id: "bacon-alho-poro", cat: "trad", novo: true, video: true, nome: "Bacon com Alho Poró", preco: PRECO_TRADICIONAL,
+      desc: "Muçarela premium, molho de tomate artesanal, bacon crocante e alho poró." },
+    { id: "calabresa", cat: "trad", nome: "Calabresa Especial", preco: PRECO_TRADICIONAL,
+      fotos: ["calabresa-2", "calabresa-3", "calabresa-4"],
+      desc: "Muçarela premium, molho artesanal e calabresa especial." },
+    { id: "frango-cremoso", cat: "trad", video: true, nome: "Frango Cremoso", preco: PRECO_TRADICIONAL,
+      desc: "Muçarela premium, molho artesanal, frango temperado e catupiry original." },
+    { id: "lombo-catupiry", cat: "trad", video: true, nome: "Lombo ao Catupiry", preco: PRECO_TRADICIONAL,
+      desc: "Muçarela premium, molho artesanal, lombo especial e catupiry original." },
+    { id: "quatro-queijos", cat: "trad", video: true, nome: "Quatro Queijos", preco: PRECO_TRADICIONAL,
+      desc: "Molho artesanal e seleção nobre de quatro queijos especiais." },
+    { id: "margherita", cat: "trad", nome: "Margherita", preco: PRECO_TRADICIONAL,
+      desc: "Muçarela premium, molho artesanal, tomates frescos e manjericão." },
+    { id: "carne-seca", cat: "prem", video: true, nome: "Carne-seca", preco: PRECO_PREMIUM,
+      desc: "Muçarela premium, molho artesanal, carne-seca com catupiry original e cebola roxa." },
+    { id: "costela-biquinho", cat: "prem", video: true, nome: "Costela com Pimenta Biquinho", preco: PRECO_PREMIUM,
+      desc: "Muçarela premium, molho artesanal, costela bovina com catupiry original e pimenta biquinho." }
+  ];
+  /* ================================================== */
+
+  const $ = id => document.getElementById(id);
+  const brl = v => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  CARDAPIO.forEach(p => { p.cartao = p.cat === "trad" ? CARTAO_TRADICIONAL : CARTAO_PREMIUM; });
+  const pagaCartao = () => /cart/i.test($("pagamento").value);
+  const precoDe = p => pagaCartao() ? p.cartao : p.preco;
+
+  let carrinho = {}; // id -> quantidade
+  const CHAVE = "brasilis-carrinho-v2";
+  try {
+    localStorage.removeItem("brasilis-carrinho"); // formato antigo, sem validade
+    const salvo = JSON.parse(localStorage.getItem(CHAVE) || "null");
+    if (salvo && Date.now() - salvo.em < CARRINHO_HORAS * 3600e3) {
+      for (const p of CARDAPIO) {
+        const q = salvo.itens && salvo.itens[p.id];
+        if (!p.esgotado && Number.isInteger(q) && q > 0) carrinho[p.id] = q;
+      }
+    }
+  } catch (e) {}
+  const salvar = () => { try {
+    if (Object.keys(carrinho).length) localStorage.setItem(CHAVE, JSON.stringify({ em: Date.now(), itens: carrinho }));
+    else localStorage.removeItem(CHAVE);
+  } catch (e) {} };
+
+  function calcular() {
+    let T = 0, P = 0, sub = 0;
+    for (const p of CARDAPIO) {
+      const q = carrinho[p.id] || 0;
+      sub += q * precoDe(p);
+      if (p.cat === "trad") T += q; else P += q;
+    }
+    let desconto = 0, x = 0, y = 0, z = 0;
+    if (PROMO_ATIVA) {
+      const econTP = PRECO_TRADICIONAL + PRECO_PREMIUM - COMBO_TRADICIONAL_PREMIUM;
+      const econTT = 2 * PRECO_TRADICIONAL - COMBO_2_TRADICIONAIS;
+      const econPP = 2 * PRECO_PREMIUM - COMBO_2_PREMIUM;
+      for (let i = 0; i <= Math.min(T, P); i++) {
+        const j = Math.floor((T - i) / 2);
+        for (let k = 0; k <= Math.floor((P - i) / 2); k++) {
+          const d = i * econTP + j * econTT + k * econPP;
+          if (d > desconto) { desconto = d; x = i; y = j; z = k; }
+        }
+      }
+    }
+    return { T, P, sub, desconto, combosTP: x, combosTT: y, combosPP: z, total: sub - desconto };
+  }
+
+  function fotoHtml(p, primeira) {
+    const base = fotoBase(p, primeira);
+    if (p.esgotado) return `<div class="com-selo esgotada">${base}<span class="selo-novo esgotado-selo">Esgotado</span></div>`;
+    if (!p.novo) return base;
+    return `<div class="com-selo">${base}<span class="selo-novo"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z"/></svg>Novidade</span></div>`;
+  }
+
+  function fotoBase(p, primeira) {
+    const lazy = primeira ? "" : ' loading="lazy"';
+    const img = `<img class="foto" src="img/${p.id}.jpg" alt="Pizza ${p.nome}${p.esgotado ? " (esgotada)" : ""}" width="800" height="600"${lazy} decoding="async">`;
+    if (p.video) return p.esgotado ? `<div class="midia">${img}</div>` : `<div class="midia" data-video="video/${p.id}.mp4">${img}
+      <video muted loop playsinline webkit-playsinline disableRemotePlayback preload="none" aria-label="Vídeo da pizza ${p.nome}" tabindex="-1"></video>
+    </div>`;
+    if (!p.fotos) return img;
+    const todas = [p.id, ...p.fotos];
+    return `<div class="carrossel" data-carrossel role="group" aria-roledescription="carrossel" aria-label="Fotos da pizza ${p.nome}">
+      ${todas.map((f, i) => `<img class="slide${i === 0 ? " ativo" : ""}" src="img/${f}.jpg" alt="Pizza ${p.nome}, foto ${i + 1} de ${todas.length}" width="800" height="600"${i || !primeira ? ' loading="lazy"' : ""} decoding="async">`).join("")}
+      <div class="pontos">${todas.map((_, i) => `<button type="button" class="ponto${i === 0 ? " ativo" : ""}" data-ir="${i}" aria-label="Ver foto ${i + 1} de ${todas.length}"></button>`).join("")}</div>
+    </div>`;
+  }
+
+  function iniciarEntrega() {
+    const el = $("entrega");
+    if (reduzir || !("IntersectionObserver" in window)) return;
+    el.classList.add("anim");
+    const obs = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting)) { el.classList.add("andar"); obs.disconnect(); }
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  }
+
+  // Vídeos: só baixam quando a pizza aparece na tela e pausam quando sai (economiza dados e bateria).
+  function iniciarVideos() {
+    if (reduzir || !("IntersectionObserver" in window)) return;
+    const obs = new IntersectionObserver(entradas => {
+      for (const e of entradas) {
+        const caixa = e.target, v = caixa.querySelector("video");
+        if (e.isIntersecting) {
+          if (!v.src) {
+            v.addEventListener("playing", () => caixa.classList.add("pronto"), { once: true });
+            v.src = caixa.dataset.video;
+          }
+          const p = v.play(); if (p && p.catch) p.catch(() => {});
+        } else if (v.src) v.pause();
+      }
+    }, { rootMargin: "150px", threshold: 0.25 });
+    document.querySelectorAll("[data-video]").forEach(c => obs.observe(c));
+  }
+
+  function iniciarCarrosseis() {
+    document.querySelectorAll("[data-carrossel]").forEach(el => {
+      const slides = [...el.querySelectorAll(".slide")];
+      const pontos = [...el.querySelectorAll(".ponto")];
+      let atual = 0, timer = null, x0 = null;
+      const ir = i => {
+        atual = (i + slides.length) % slides.length;
+        slides.forEach((s, k) => s.classList.toggle("ativo", k === atual));
+        pontos.forEach((d, k) => { d.classList.toggle("ativo", k === atual); d.toggleAttribute("aria-current", k === atual); });
+      };
+      const iniciar = () => {
+        if (reduzir) return;
+        clearInterval(timer);
+        timer = setInterval(() => { if (!document.hidden) ir(atual + 1); }, 3500);
+      };
+      pontos.forEach(d => d.addEventListener("click", () => { ir(+d.dataset.ir); iniciar(); }));
+      el.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+      el.addEventListener("touchend", e => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) { ir(atual + (dx < 0 ? 1 : -1)); iniciar(); }
+      }, { passive: true });
+      iniciar();
+    });
+  }
+
+  function desenharCardapio() {
+    let primeira = true;
+    for (const cat of ["novo", "trad", "prem"]) {
+      $("lista-" + cat).innerHTML = CARDAPIO.filter(p => cat === "novo" ? p.novo : (p.cat === cat && !p.novo)).map(p => {
+        const html = `
+        <article class="item${p.esgotado ? " esgotado" : ""}">
+          ${fotoHtml(p, primeira)}
+          <div class="corpo">
+            <h3>${p.nome}</h3>
+            <p>${p.desc}</p>
+            <div class="rodape-item">
+              <span class="precos">
+                <span class="preco">${brl(p.preco)} <small>no Pix ou dinheiro</small></span>
+                <span class="preco cartao">${brl(p.cartao)} <small>no débito ou crédito</small></span>
+              </span>
+              <span data-controle="${p.id}"></span>
+            </div>
+          </div>
+        </article>`;
+        primeira = false;
+        return html;
+      }).join("");
+    }
+    atualizarControles();
+  }
+
+  function controleHtml(p) {
+    if (p.esgotado) return `<span class="tag-esgotado">Esgotado</span>`;
+    const q = carrinho[p.id] || 0;
+    if (!q) return `<button type="button" class="btn-add" data-acao="mais" data-id="${p.id}" aria-label="Adicionar ${p.nome}">Adicionar</button>`;
+    return `<span class="stepper">
+      <button type="button" data-acao="menos" data-id="${p.id}" aria-label="Remover uma ${p.nome}">&minus;</button>
+      <output aria-live="polite">${q}</output>
+      <button type="button" data-acao="mais" data-id="${p.id}" aria-label="Adicionar mais uma ${p.nome}">+</button>
+    </span>`;
+  }
+
+  function atualizarControles() {
+    document.querySelectorAll("[data-controle]").forEach(el => {
+      el.innerHTML = controleHtml(CARDAPIO.find(x => x.id === el.dataset.controle));
+    });
+    const itens = CARDAPIO.filter(p => carrinho[p.id]);
+    const qtd = itens.reduce((s, p) => s + carrinho[p.id], 0);
+    const c = calcular();
+    $("barra").classList.toggle("visivel", qtd > 0);
+    $("barra-qtd").textContent = qtd === 1 ? "Ver pedido (1 pizza)" : `Ver pedido (${qtd} pizzas)`;
+    $("barra-total").textContent = brl(c.total);
+    $("total-pedido").textContent = brl(c.total);
+    $("rotulo-total").textContent = pagaCartao() ? "Total no cartão" : "Total no Pix ou dinheiro";
+    document.body.classList.toggle("com-pedido", qtd > 0);
+    let r = "";
+    if (c.desconto > 0) {
+      const partes = [];
+      if (c.combosPP) partes.push(c.combosPP === 1 ? "2 premium por R$ 60" : `${c.combosPP}x (2 premium por R$ 60)`);
+      if (c.combosTT) partes.push(c.combosTT === 1 ? "2 tradicionais por R$ 50" : `${c.combosTT}x (2 tradicionais por R$ 50)`);
+      if (c.combosTP) partes.push(c.combosTP === 1 ? "1 tradicional + 1 premium por R$ 55" : `${c.combosTP}x (1 tradicional + 1 premium por R$ 55)`);
+      r += `<div class="r"><span>Subtotal</span><span>${brl(c.sub)}</span></div>`;
+      r += `<div class="r desc"><span>Promoção de lançamento</span><span>&minus;${brl(c.desconto)}</span></div>`;
+      r += `<div class="r"><span>${partes.join(" e ")}</span><span></span></div>`;
+    }
+    if (PROMO_ATIVA && qtd === 1) {
+      r += `<p class="dica">${c.T === 1 ? "Adicione mais uma tradicional (2 por R$ 50) ou uma premium (as duas por R$ 55) para entrar na promoção." : "Adicione uma tradicional (as duas por R$ 55) ou outra premium (as duas por R$ 60) para entrar na promoção."}</p>`;
+    }
+    $("resumo").innerHTML = r;
+
+    $("itens-pedido").innerHTML = itens.length ? itens.map(p => `
+      <div class="linha">
+        <div><div class="nome">${p.nome}</div><div class="sub">${brl(precoDe(p))} cada, 20 cm</div></div>
+        <span class="stepper">
+          <button type="button" data-acao="menos" data-id="${p.id}" aria-label="Remover uma ${p.nome}">&minus;</button>
+          <output>${carrinho[p.id]}</output>
+          <button type="button" data-acao="mais" data-id="${p.id}" aria-label="Adicionar mais uma ${p.nome}">+</button>
+        </span>
+      </div>`).join("") : `<p class="vazio">Seu pedido está vazio. Volte ao cardápio e toque em Adicionar.</p>`;
+    salvar();
+    if (!itens.length && $("painel").classList.contains("aberto")) fecharPainel();
+  }
+
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-acao]");
+    if (!b) return;
+    const id = b.dataset.id;
+    if (CARDAPIO.find(x => x.id === id)?.esgotado && b.dataset.acao === "mais") return;
+    carrinho[id] = Math.max(0, (carrinho[id] || 0) + (b.dataset.acao === "mais" ? 1 : -1));
+    if (!carrinho[id]) delete carrinho[id];
+    atualizarControles();
+    // devolve o foco ao botão equivalente após redesenhar
+    const alvo = document.querySelector(`[data-acao="${b.dataset.acao}"][data-id="${id}"]`) || document.querySelector(`[data-acao="mais"][data-id="${id}"]`);
+    if (alvo && document.activeElement === document.body) alvo.focus({ preventScroll: true });
+  });
+
+  function abrirPainel() {
+    $("fundo").classList.add("aberto"); $("painel").classList.add("aberto"); $("painel").setAttribute("aria-hidden", "false");
+    document.body.classList.add("travado");
+    $("fechar").focus();
+  }
+  function fecharPainel() {
+    $("fundo").classList.remove("aberto"); $("painel").classList.remove("aberto"); $("painel").setAttribute("aria-hidden", "true");
+    document.body.classList.remove("travado");
+    $("abrir-pedido").focus({ preventScroll: true });
+  }
+  $("abrir-pedido").addEventListener("click", abrirPainel);
+  $("fechar").addEventListener("click", fecharPainel);
+  $("fundo").addEventListener("click", fecharPainel);
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && $("painel").classList.contains("aberto")) fecharPainel(); });
+
+  const modo = () => document.querySelector('input[name="modo"]:checked').value;
+  document.querySelectorAll('input[name="modo"]').forEach(r => r.addEventListener("change", () => {
+    const entrega = modo().startsWith("Entrega");
+    $("campo-endereco").hidden = !entrega;
+    $("taxa-zero").hidden = !entrega;
+  }));
+
+  function montarMensagem() {
+    const itens = CARDAPIO.filter(p => carrinho[p.id]);
+    const c = calcular();
+    const linhas = [
+      "*Novo pedido: Brasilis Gourmet*", "",
+      `*Cliente:* ${$("nome").value.trim()}`, "",
+      "*Itens (pizza de fermentação natural, 20 cm):*",
+      ...itens.map(p => `${carrinho[p.id]}x ${p.nome} (${brl(precoDe(p) * carrinho[p.id])})`), "",
+      `*Subtotal:* ${brl(c.sub)}`
+    ];
+    if (c.desconto > 0) linhas.push(`*Promoção de lançamento:* -${brl(c.desconto)}`);
+    linhas.push(`*Total:* ${brl(c.total)}`, `*Recebimento:* ${modo()}`);
+    if (modo().startsWith("Entrega")) linhas.push(`*Endereço:* ${$("endereco").value.trim()}`, "*Taxa de entrega:* R$ 0,00 (mês de lançamento)");
+    linhas.push(`*Pagamento:* ${$("pagamento").value}`);
+    const obs = $("obs").value.trim();
+    if (obs) linhas.push(`*Observações:* ${obs}`);
+    return linhas.join("\n");
+  }
+
+  $("enviar").addEventListener("click", e => {
+    const itens = CARDAPIO.filter(p => carrinho[p.id]);
+    let erro = "";
+    if (!itens.length) erro = "Adicione ao menos uma pizza ao pedido.";
+    else if (!$("nome").value.trim()) erro = "Informe seu nome.";
+    else if (modo().startsWith("Entrega") && !$("endereco").value.trim()) erro = "Informe o endereço de entrega.";
+    $("erro").textContent = erro;
+    if (erro) { e.preventDefault(); return; }
+    $("enviar").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(montarMensagem())}`;
+    // Pedido enviado: limpa o carrinho depois que o WhatsApp abrir (antes ficava salvo para sempre)
+    setTimeout(() => { carrinho = {}; $("obs").value = ""; atualizarControles(); }, 1500);
+  });
+
+  document.querySelectorAll("[data-wa]").forEach(a => {
+    a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Olá! Vim pelo cardápio da Brasilis Gourmet.")}`;
+  });
+
+  $("pagamento").addEventListener("change", atualizarControles);
+  desenharCardapio();
+  iniciarCarrosseis();
+  iniciarVideos();
+  iniciarEntrega();
+</script>
+</body>
+</html>
