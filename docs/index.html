@@ -190,6 +190,13 @@
   }
   .nota { font-size: 12px; color: var(--ink-soft); text-align: center; margin: 10px 0 0; }
 
+  /* Seletor de idioma (só para apresentação; ver SELETOR_IDIOMA) */
+  .idiomas { margin: 32px 0 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; font-size: 13px; }
+  .idiomas[hidden] { display: none; }
+  .idiomas span { width: 100%; text-align: center; color: var(--ink-soft); }
+  .idiomas a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); text-decoration: none; }
+  .idiomas a[aria-current] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+
   @media (prefers-reduced-motion: reduce) { .barra, .painel, .wa-flutuante, .carrossel .slide { transition: none; } }
 </style>
 </head>
@@ -268,6 +275,14 @@
     <p data-t="duvidas">Dúvidas ou pedidos maiores? Chame a gente.</p>
     <a class="btn-wa" data-wa href="#" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> <span data-t="falarWa">Falar no WhatsApp</span></a>
   </section>
+
+  <nav class="idiomas" id="idiomas" aria-label="Idioma" data-t-aria="idioma" hidden>
+    <span data-t="idioma">Idioma</span>
+    <a href="?lang=pt" lang="pt-BR" data-lang="pt">Português</a>
+    <a href="?lang=en" lang="en" data-lang="en">English</a>
+    <a href="?lang=es" lang="es" data-lang="es">Español</a>
+    <a href="?lang=fr" lang="fr" data-lang="fr">Français</a>
+  </nav>
 </main>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -353,64 +368,68 @@
   // Carrinho guardado no celular por no máximo este tempo (antes: para sempre)
   const CARRINHO_HORAS = 3;
 
+  // Botões de idioma no rodapé. Só para a apresentação: em produção mude para false
+  // e o cardápio usa apenas o idioma do aparelho.
+  const SELETOR_IDIOMA = true;
+
   // foto: img/<id>.jpg | video: true = tem vídeo em video/<id>.mp4 | fotos: fotos extras (carrossel)
   // Para marcar como esgotada: esgotado: true
   // nome e desc em 4 idiomas: pt, en, es, fr. A mensagem para a equipe sempre usa o nome em português.
   const CARDAPIO = [
     { id: "bacon-alho-poro", cat: "trad", novo: true, video: true, preco: PRECO_TRADICIONAL,
-      nome: { pt: "Bacon com Alho Poró", en: "Bacon & Leek", es: "Bacon con Puerro", fr: "Bacon et Poireau" },
+      nome: { pt: "Bacon com Alho Poró", en: "Bacon & Leek", es: "Bacon y Puerro", fr: "Lardons et Poireaux" },
       desc: { pt: "Muçarela premium, molho de tomate artesanal, bacon crocante e alho poró.",
-              en: "Premium mozzarella, artisanal tomato sauce, crispy bacon and leek.",
-              es: "Mozzarella premium, salsa de tomate artesanal, bacon crujiente y puerro.",
-              fr: "Mozzarella premium, sauce tomate artisanale, bacon croustillant et poireau." } },
+              en: "Premium mozzarella, house-made tomato sauce, crispy bacon and leeks.",
+              es: "Mozzarella premium, salsa de tomate casera, bacon crujiente y puerro.",
+              fr: "Mozzarella premium, sauce tomate maison, lardons croustillants et poireaux." } },
     { id: "calabresa", cat: "trad", preco: PRECO_TRADICIONAL, fotos: ["calabresa-2", "calabresa-3", "calabresa-4"],
-      nome: { pt: "Calabresa Especial", en: "Special Calabresa", es: "Calabresa Especial", fr: "Calabresa Spéciale" },
+      nome: { pt: "Calabresa Especial", en: "Calabresa", es: "Calabresa", fr: "Calabresa" },
       desc: { pt: "Muçarela premium, molho artesanal e calabresa especial.",
-              en: "Premium mozzarella, artisanal sauce and special calabresa (Brazilian smoked sausage).",
-              es: "Mozzarella premium, salsa artesanal y calabresa especial (embutido ahumado brasileño).",
-              fr: "Mozzarella premium, sauce artisanale et calabresa spéciale (saucisse fumée brésilienne)." } },
+              en: "Premium mozzarella, house-made sauce and calabresa (Brazilian smoked sausage).",
+              es: "Mozzarella premium, salsa casera y calabresa (embutido ahumado brasileño).",
+              fr: "Mozzarella premium, sauce maison et calabresa (saucisse fumée brésilienne)." } },
     { id: "frango-cremoso", cat: "trad", video: true, preco: PRECO_TRADICIONAL,
       nome: { pt: "Frango Cremoso", en: "Creamy Chicken", es: "Pollo Cremoso", fr: "Poulet Crémeux" },
       desc: { pt: "Muçarela premium, molho artesanal, frango temperado e catupiry original.",
-              en: "Premium mozzarella, artisanal sauce, seasoned chicken and original Catupiry (Brazilian cream cheese).",
-              es: "Mozzarella premium, salsa artesanal, pollo sazonado y Catupiry original (queso crema brasileño).",
-              fr: "Mozzarella premium, sauce artisanale, poulet assaisonné et Catupiry original (fromage frais brésilien)." } },
+              en: "Premium mozzarella, house-made sauce, seasoned chicken and original Catupiry (Brazilian cream cheese).",
+              es: "Mozzarella premium, salsa casera, pollo condimentado y Catupiry original (queso crema brasileño).",
+              fr: "Mozzarella premium, sauce maison, poulet assaisonné et Catupiry original (fromage frais crémeux brésilien)." } },
     { id: "lombo-catupiry", cat: "trad", video: true, preco: PRECO_TRADICIONAL,
-      nome: { pt: "Lombo ao Catupiry", en: "Pork Loin & Catupiry", es: "Lomo con Catupiry", fr: "Filet de Porc au Catupiry" },
+      nome: { pt: "Lombo ao Catupiry", en: "Pork Loin & Catupiry", es: "Lomo de Cerdo con Catupiry", fr: "Filet de Porc au Catupiry" },
       desc: { pt: "Muçarela premium, molho artesanal, lombo especial e catupiry original.",
-              en: "Premium mozzarella, artisanal sauce, special pork loin and original Catupiry.",
-              es: "Mozzarella premium, salsa artesanal, lomo de cerdo especial y Catupiry original.",
-              fr: "Mozzarella premium, sauce artisanale, filet de porc spécial et Catupiry original." } },
+              en: "Premium mozzarella, house-made sauce, pork loin and original Catupiry.",
+              es: "Mozzarella premium, salsa casera, lomo de cerdo y Catupiry original.",
+              fr: "Mozzarella premium, sauce maison, filet de porc et Catupiry original." } },
     { id: "quatro-queijos", cat: "trad", video: true, preco: PRECO_TRADICIONAL,
       nome: { pt: "Quatro Queijos", en: "Four Cheese", es: "Cuatro Quesos", fr: "Quatre Fromages" },
       desc: { pt: "Molho artesanal e seleção nobre de quatro queijos especiais.",
-              en: "Artisanal sauce and a fine selection of four special cheeses.",
-              es: "Salsa artesanal y selección noble de cuatro quesos especiales.",
-              fr: "Sauce artisanale et une sélection raffinée de quatre fromages spéciaux." } },
+              en: "House-made sauce and a blend of four fine cheeses.",
+              es: "Salsa casera y una selección de cuatro quesos especiales.",
+              fr: "Sauce maison et une sélection de quatre fromages de caractère." } },
     { id: "margherita", cat: "trad", preco: PRECO_TRADICIONAL,
-      nome: { pt: "Margherita", en: "Margherita", es: "Margherita", fr: "Margherita" },
+      nome: { pt: "Margherita", en: "Margherita", es: "Margarita", fr: "Margherita" },
       desc: { pt: "Muçarela premium, molho artesanal, tomates frescos e manjericão.",
-              en: "Premium mozzarella, artisanal sauce, fresh tomatoes and basil.",
-              es: "Mozzarella premium, salsa artesanal, tomates frescos y albahaca.",
-              fr: "Mozzarella premium, sauce artisanale, tomates fraîches et basilic." } },
+              en: "Premium mozzarella, house-made sauce, fresh tomatoes and basil.",
+              es: "Mozzarella premium, salsa casera, tomate fresco y albahaca.",
+              fr: "Mozzarella premium, sauce maison, tomates fraîches et basilic." } },
     { id: "carne-seca", cat: "prem", video: true, preco: PRECO_PREMIUM,
-      nome: { pt: "Carne-seca", en: "Carne-seca (Dried Beef)", es: "Carne Seca", fr: "Bœuf Séché (Carne-seca)" },
+      nome: { pt: "Carne-seca", en: "Carne-Seca (Brazilian Dried Beef)", es: "Carne Seca Brasileña", fr: "Bœuf Séché Brésilien" },
       desc: { pt: "Muçarela premium, molho artesanal, carne-seca com catupiry original e cebola roxa.",
-              en: "Premium mozzarella, artisanal sauce, Brazilian dried beef with original Catupiry and red onion.",
-              es: "Mozzarella premium, salsa artesanal, carne seca con Catupiry original y cebolla morada.",
-              fr: "Mozzarella premium, sauce artisanale, bœuf séché brésilien au Catupiry original et oignon rouge." } },
+              en: "Premium mozzarella, house-made sauce, Brazilian dried beef with original Catupiry and red onion.",
+              es: "Mozzarella premium, salsa casera, carne seca brasileña con Catupiry original y cebolla morada.",
+              fr: "Mozzarella premium, sauce maison, carne-seca (bœuf séché brésilien) au Catupiry original et oignon rouge." } },
     { id: "costela-biquinho", cat: "prem", video: true, preco: PRECO_PREMIUM,
-      nome: { pt: "Costela com Pimenta Biquinho", en: "Beef Rib & Biquinho Pepper", es: "Costilla con Pimiento Biquinho", fr: "Plat de Côtes et Piment Biquinho" },
+      nome: { pt: "Costela com Pimenta Biquinho", en: "Beef Short Rib & Biquinho Pepper", es: "Costilla de Res con Pimiento Biquinho", fr: "Bœuf Effiloché et Piment Biquinho" },
       desc: { pt: "Muçarela premium, molho artesanal, costela bovina com catupiry original e pimenta biquinho.",
-              en: "Premium mozzarella, artisanal sauce, beef rib with original Catupiry and biquinho pepper (mild Brazilian pepper).",
-              es: "Mozzarella premium, salsa artesanal, costilla de res con Catupiry original y pimiento biquinho (pimiento suave brasileño).",
-              fr: "Mozzarella premium, sauce artisanale, plat de côtes de bœuf au Catupiry original et piment biquinho (petit piment doux brésilien)." } }
+              en: "Premium mozzarella, house-made sauce, beef short rib with original Catupiry and biquinho peppers (small, mild Brazilian peppers).",
+              es: "Mozzarella premium, salsa casera, costilla de res con Catupiry original y pimiento biquinho (pimiento dulce brasileño).",
+              fr: "Mozzarella premium, sauce maison, plat de côtes de bœuf effiloché au Catupiry original et piment biquinho (petit piment doux brésilien)." } }
   ];
   /* ================================================== */
 
   const I18N = {
     pt: {
-      locale: "pt-BR", nomeIdioma: "Português",
+      locale: "pt-BR", nomeIdioma: "Português", idioma: "Idioma",
       title: "Brasilis Gourmet | Pizzas de fermentação natural",
       descMeta: "Pizza de fermentação natural, pronta em 5 minutos na airfryer. Peça pelo WhatsApp.",
       logoAlt: "Brasilis Gourmet: sabores, cultura, encontros",
@@ -443,103 +462,104 @@
       ola: "Olá! Vim pelo cardápio da Brasilis Gourmet."
     },
     en: {
-      locale: "en-US", nomeIdioma: "English",
-      title: "Brasilis Gourmet | Naturally fermented pizzas",
-      descMeta: "Naturally fermented pizza, ready in 5 minutes in the air fryer. Order on WhatsApp.",
-      logoAlt: "Brasilis Gourmet: flavors, culture, gatherings",
-      assinatura: "A practical solution for those in a<br>hurry to enjoy life to the fullest.",
-      h1: "Naturally fermented pizza, ready in 5 minutes",
-      intro: "Our pizzas come frozen: heat them in the air fryer for 5 minutes and serve. Artisanal tomato sauce and top-quality toppings.",
-      tag1: "Natural fermentation", tag3: "Artisanal sauce", tag4: "5 min in the air fryer",
+      locale: "en", nomeIdioma: "English", idioma: "Language",
+      title: "Brasilis Gourmet | Sourdough Pizza",
+      descMeta: "Sourdough pizza, ready in 5 minutes in the air fryer. Order on WhatsApp.",
+      logoAlt: "Brasilis Gourmet: sabores, cultura, encontros",
+      assinatura: "A practical choice for people in a hurry<br>to make the most of life.",
+      h1: "Sourdough pizza, ready in 5 minutes",
+      intro: "Our pizzas come frozen: just pop them in the air fryer for 5 minutes and serve. House-made tomato sauce and top-quality toppings.",
+      tag1: "Sourdough crust", tag3: "House-made sauce", tag4: "5 min in the air fryer",
       entregaAria: "Free delivery during our launch month", entregaGratis: "Free delivery",
-      entregaSub: "During our launch month, there's no delivery fee.", seloTaxa: "delivery fee",
+      entregaSub: "No delivery fee during our launch month.", seloTaxa: "delivery fee",
       novidade: "New", tradicionais: "Classics",
-      aviso: "Pickup or delivery, with the time arranged on WhatsApp. During our launch month, delivery is free. Every order is confirmed on WhatsApp.",
-      duvidas: "Questions or larger orders? Get in touch.", falarWa: "Chat on WhatsApp", waAria: "Chat with Brasilis Gourmet on WhatsApp",
-      seuPedido: "Your order", fecharAria: "Close order", formaPag: "Payment method",
+      aviso: "Pickup or delivery, at a time arranged via WhatsApp. Delivery is free during our launch month. All orders are confirmed via WhatsApp.",
+      duvidas: "Questions or large orders? Get in touch.", falarWa: "Message us on WhatsApp", waAria: "Message Brasilis Gourmet on WhatsApp",
+      seuPedido: "Your order", fecharAria: "Close", formaPag: "Payment method",
       dinheiro: "Cash", debito: "Debit card", credito: "Credit card",
-      seuNome: "Your name", nomePh: "What should we call you?", comoReceber: "How would you like to get it?", retirada: "Pickup",
-      taxaZero: "No delivery fee during our launch month.", endereco: "Delivery address", enderecoPh: "Street, number, neighborhood and apt.",
-      obs: "Notes (optional)", obsPh: "E.g.: no onion, change for R$ 100",
-      enviar: "Send order on WhatsApp", nota: "Tap the button and WhatsApp opens with your order ready. Just hit send.",
-      pixDinheiro: "with Pix or cash", noCartao: "with debit or credit", adicionar: "Add", esgotado: "Sold out", esgotada: "sold out",
+      seuNome: "Your name", nomePh: "Name for the order", comoReceber: "Pickup or delivery?", retirada: "Pickup",
+      taxaZero: "No delivery fee during our launch month.", endereco: "Delivery address", enderecoPh: "Street address, apt/flat and area",
+      obs: "Special instructions (optional)", obsPh: "e.g. no onions, paying with R$ 100 in cash",
+      enviar: "Send order via WhatsApp", nota: "Tap the button and WhatsApp will open with your order ready to send.",
+      pixDinheiro: "Pix or cash", noCartao: "by card", adicionar: "Add", esgotado: "Sold out", esgotada: "sold out",
       addAria: n => `Add ${n}`, menosAria: n => `Remove one ${n}`, maisAria: n => `Add one more ${n}`,
       verPedido: q => q === 1 ? "View order (1 pizza)" : `View order (${q} pizzas)`,
-      totalCartao: "Total by card", totalPix: "Total with Pix or cash", subtotal: "Subtotal", promo: "Launch promotion",
+      totalCartao: "Total (card)", totalPix: "Total (Pix or cash)", subtotal: "Subtotal", promo: "Launch special",
       comboPP: "2 premium for", comboTT: "2 classics for", comboTP: "1 classic + 1 premium for", e: " and ",
-      dicaT: "Add another classic (2 for R$ 50) or a premium (both for R$ 55) to get the promotion.",
-      dicaP: "Add a classic (both for R$ 55) or another premium (both for R$ 60) to get the promotion.",
-      cada: "each, 20 cm", vazio: "Your order is empty. Go back to the menu and tap Add.",
-      erroItens: "Add at least one pizza to your order.", erroNome: "Please enter your name.", erroEnd: "Please enter the delivery address.",
+      dicaT: "Add another classic (2 for R$ 50) or a premium (both for R$ 55) to get the launch special.",
+      dicaP: "Add a classic (both for R$ 55) or another premium (both for R$ 60) to get the launch special.",
+      cada: "each, 20 cm", vazio: "Your order is empty. Add some pizzas from the menu.",
+      erroItens: "Please add at least one pizza.", erroNome: "Please enter your name.", erroEnd: "Please enter your delivery address.",
       pizza: n => `${n} pizza`, foto: (i, n) => `photo ${i} of ${n}`, video: n => `Video of the ${n} pizza`,
-      fotosDe: n => `Photos of the ${n} pizza`, verFoto: (i, n) => `View photo ${i} of ${n}`,
-      ola: "Hi! I found you through the Brasilis Gourmet menu."
+      fotosDe: n => `Photos of the ${n} pizza`, verFoto: (i, n) => `Show photo ${i} of ${n}`,
+      ola: "Hi! I saw the Brasilis Gourmet menu and have a question."
     },
+    // Espanhol neutro: serve para Espanha e Argentina (sem "vos" nem termos de um país só)
     es: {
-      locale: "es", nomeIdioma: "Español",
-      title: "Brasilis Gourmet | Pizzas de fermentación natural",
-      descMeta: "Pizza de fermentación natural, lista en 5 minutos en la freidora de aire. Pide por WhatsApp.",
-      logoAlt: "Brasilis Gourmet: sabores, cultura, encuentros",
-      assinatura: "Una solución práctica para quien tiene<br>prisa por disfrutar bien la vida.",
-      h1: "Pizza de fermentación natural, lista en 5 minutos",
-      intro: "Las pizzas vienen congeladas: caliéntalas en la freidora de aire durante 5 minutos y sirve. Salsa de tomate artesanal e ingredientes de primera calidad.",
-      tag1: "Fermentación natural", tag3: "Salsa artesanal", tag4: "5 min en la freidora de aire",
+      locale: "es", nomeIdioma: "Español", idioma: "Idioma",
+      title: "Brasilis Gourmet | Pizzas de masa madre",
+      descMeta: "Pizza de masa madre, lista en 5 minutos en la freidora de aire. Pedidos por WhatsApp.",
+      logoAlt: "Brasilis Gourmet: sabores, cultura, encontros",
+      assinatura: "Una solución práctica para quienes<br>quieren disfrutar la vida sin perder tiempo.",
+      h1: "Pizza de masa madre, lista en 5 minutos",
+      intro: "Nuestras pizzas vienen congeladas: 5 minutos en la freidora de aire y listas para servir. Salsa de tomate casera e ingredientes de primera calidad.",
+      tag1: "Masa madre", tag3: "Salsa casera", tag4: "5 min en freidora de aire",
       entregaAria: "Envío gratis durante el mes de lanzamiento", entregaGratis: "Envío gratis",
-      entregaSub: "En este mes de lanzamiento, no cobramos tarifa de envío.", seloTaxa: "de tarifa de envío",
-      novidade: "Novedad", tradicionais: "Tradicionales",
-      aviso: "Recogida o envío, con horario acordado por WhatsApp. En el mes de lanzamiento, el envío no tiene costo. Todo pedido se confirma por WhatsApp.",
-      duvidas: "¿Dudas o pedidos más grandes? Escríbenos.", falarWa: "Hablar por WhatsApp", waAria: "Hablar con Brasilis Gourmet por WhatsApp",
-      seuPedido: "Tu pedido", fecharAria: "Cerrar pedido", formaPag: "Forma de pago",
+      entregaSub: "Durante el mes de lanzamiento, el envío es gratis.", seloTaxa: "de envío",
+      novidade: "Novedad", tradicionais: "Clásicas",
+      aviso: "Para recoger en el local o con envío a domicilio, en el horario que acordemos por WhatsApp. Durante el mes de lanzamiento, el envío es gratis. Todos los pedidos se confirman por WhatsApp.",
+      duvidas: "¿Dudas o pedidos grandes? Estamos en WhatsApp.", falarWa: "Contactar por WhatsApp", waAria: "Contactar con Brasilis Gourmet por WhatsApp",
+      seuPedido: "Tu pedido", fecharAria: "Cerrar", formaPag: "Forma de pago",
       dinheiro: "Efectivo", debito: "Tarjeta de débito", credito: "Tarjeta de crédito",
-      seuNome: "Tu nombre", nomePh: "¿Cómo te llamamos?", comoReceber: "¿Cómo quieres recibirlo?", retirada: "Recogida",
-      taxaZero: "Envío sin costo en este mes de lanzamiento.", endereco: "Dirección de entrega", enderecoPh: "Calle, número, barrio y complemento",
-      obs: "Observaciones (opcional)", obsPh: "Ej.: sin cebolla, cambio para R$ 100",
-      enviar: "Enviar pedido por WhatsApp", nota: "Al tocar el botón, WhatsApp se abre con el pedido listo. Solo tienes que enviarlo.",
-      pixDinheiro: "con Pix o efectivo", noCartao: "con débito o crédito", adicionar: "Agregar", esgotado: "Agotado", esgotada: "agotada",
-      addAria: n => `Agregar ${n}`, menosAria: n => `Quitar una ${n}`, maisAria: n => `Agregar una más ${n}`,
+      seuNome: "Nombre", nomePh: "¿A nombre de quién?", comoReceber: "Modalidad de entrega", retirada: "Recoger en el local",
+      taxaZero: "Envío gratis durante el mes de lanzamiento.", endereco: "Dirección de entrega", enderecoPh: "Calle, número, piso/depto. y barrio",
+      obs: "Observaciones (opcional)", obsPh: "Ej.: sin cebolla, pago con R$ 100 en efectivo",
+      enviar: "Enviar pedido por WhatsApp", nota: "Al tocar el botón, se abre WhatsApp con tu pedido listo para enviar.",
+      pixDinheiro: "con Pix o efectivo", noCartao: "con tarjeta", adicionar: "Añadir", esgotado: "Agotada", esgotada: "agotada",
+      addAria: n => `Añadir ${n}`, menosAria: n => `Quitar una ${n}`, maisAria: n => `Añadir otra ${n}`,
       verPedido: q => q === 1 ? "Ver pedido (1 pizza)" : `Ver pedido (${q} pizzas)`,
       totalCartao: "Total con tarjeta", totalPix: "Total con Pix o efectivo", subtotal: "Subtotal", promo: "Promoción de lanzamiento",
-      comboPP: "2 premium por", comboTT: "2 tradicionales por", comboTP: "1 tradicional + 1 premium por", e: " y ",
-      dicaT: "Agrega otra tradicional (2 por R$ 50) o una premium (las dos por R$ 55) para entrar en la promoción.",
-      dicaP: "Agrega una tradicional (las dos por R$ 55) u otra premium (las dos por R$ 60) para entrar en la promoción.",
-      cada: "c/u, 20 cm", vazio: "Tu pedido está vacío. Vuelve al menú y toca Agregar.",
-      erroItens: "Agrega al menos una pizza al pedido.", erroNome: "Escribe tu nombre.", erroEnd: "Escribe la dirección de entrega.",
+      comboPP: "2 premium por", comboTT: "2 clásicas por", comboTP: "1 clásica + 1 premium por", e: " y ",
+      dicaT: "Con otra clásica (2 por R$ 50) o una premium (las dos por R$ 55) entras en la promoción.",
+      dicaP: "Con una clásica (las dos por R$ 55) u otra premium (las dos por R$ 60) entras en la promoción.",
+      cada: "cada una, 20 cm", vazio: "Tu pedido está vacío. Elige tus pizzas en la carta.",
+      erroItens: "El pedido todavía no tiene pizzas.", erroNome: "Falta tu nombre.", erroEnd: "Falta la dirección de entrega.",
       pizza: n => `Pizza ${n}`, foto: (i, n) => `foto ${i} de ${n}`, video: n => `Video de la pizza ${n}`,
       fotosDe: n => `Fotos de la pizza ${n}`, verFoto: (i, n) => `Ver foto ${i} de ${n}`,
-      ola: "¡Hola! Vengo del menú de Brasilis Gourmet."
+      ola: "¡Hola! Vi la carta de Brasilis Gourmet y quería hacer una consulta."
     },
     fr: {
-      locale: "fr-FR", nomeIdioma: "Français",
-      title: "Brasilis Gourmet | Pizzas à fermentation naturelle",
-      descMeta: "Pizza à fermentation naturelle, prête en 5 minutes au air fryer. Commandez sur WhatsApp.",
-      logoAlt: "Brasilis Gourmet : saveurs, culture, rencontres",
-      assinatura: "Une solution pratique pour ceux qui sont<br>pressés de bien profiter de la vie.",
-      h1: "Pizza à fermentation naturelle, prête en 5 minutes",
-      intro: "Nos pizzas sont surgelées : réchauffez-les 5 minutes au air fryer et servez. Sauce tomate artisanale et garnitures de première qualité.",
-      tag1: "Fermentation naturelle", tag3: "Sauce artisanale", tag4: "5 min au air fryer",
-      entregaAria: "Livraison gratuite pendant le mois de lancement", entregaGratis: "Livraison gratuite",
-      entregaSub: "Pendant ce mois de lancement, la livraison est offerte.", seloTaxa: "de frais de livraison",
+      locale: "fr", nomeIdioma: "Français", idioma: "Langue",
+      title: "Brasilis Gourmet | Pizzas au levain",
+      descMeta: "Pizza au levain, prête en 5 minutes à la friteuse sans huile. Commandez sur WhatsApp.",
+      logoAlt: "Brasilis Gourmet : sabores, cultura, encontros",
+      assinatura: "La solution pratique pour ceux qui ont<br>hâte de profiter pleinement de la vie.",
+      h1: "Pizza au levain, prête en 5 minutes",
+      intro: "Nos pizzas sont surgelées : 5 minutes à la friteuse sans huile et c'est prêt. Sauce tomate maison et garnitures de premier choix.",
+      tag1: "Pâte au levain", tag3: "Sauce maison", tag4: "5 min à la friteuse sans huile",
+      entregaAria: "Livraison offerte pendant le mois de lancement", entregaGratis: "Livraison offerte",
+      entregaSub: "Pendant notre mois de lancement, la livraison est offerte.", seloTaxa: "de frais de livraison",
       novidade: "Nouveauté", tradicionais: "Classiques",
-      aviso: "À emporter ou en livraison, avec l'horaire convenu sur WhatsApp. Pendant le mois de lancement, la livraison est gratuite. Chaque commande est confirmée sur WhatsApp.",
-      duvidas: "Des questions ou une grosse commande ? Contactez-nous.", falarWa: "Écrire sur WhatsApp", waAria: "Écrire à Brasilis Gourmet sur WhatsApp",
-      seuPedido: "Votre commande", fecharAria: "Fermer la commande", formaPag: "Mode de paiement",
+      aviso: "À emporter ou en livraison, à l'heure convenue ensemble sur WhatsApp. Pendant le mois de lancement, la livraison est offerte. Chaque commande est confirmée sur WhatsApp.",
+      duvidas: "Une question ou une grosse commande ? Écrivez-nous.", falarWa: "Nous écrire sur WhatsApp", waAria: "Écrire à Brasilis Gourmet sur WhatsApp",
+      seuPedido: "Votre commande", fecharAria: "Fermer", formaPag: "Mode de paiement",
       dinheiro: "Espèces", debito: "Carte de débit", credito: "Carte de crédit",
-      seuNome: "Votre nom", nomePh: "Comment vous appeler ?", comoReceber: "Comment souhaitez-vous la recevoir ?", retirada: "À emporter",
-      taxaZero: "Livraison sans frais pendant ce mois de lancement.", endereco: "Adresse de livraison", enderecoPh: "Rue, numéro, quartier et complément",
-      obs: "Remarques (facultatif)", obsPh: "Ex. : sans oignon, monnaie sur R$ 100",
-      enviar: "Envoyer la commande sur WhatsApp", nota: "En touchant le bouton, WhatsApp s'ouvre avec la commande prête. Il suffit de l'envoyer.",
-      pixDinheiro: "en Pix ou espèces", noCartao: "par carte de débit ou crédit", adicionar: "Ajouter", esgotado: "Épuisé", esgotada: "épuisée",
-      addAria: n => `Ajouter ${n}`, menosAria: n => `Retirer une ${n}`, maisAria: n => `Ajouter une autre ${n}`,
-      verPedido: q => q === 1 ? "Voir la commande (1 pizza)" : `Voir la commande (${q} pizzas)`,
-      totalCartao: "Total par carte", totalPix: "Total en Pix ou espèces", subtotal: "Sous-total", promo: "Promotion de lancement",
+      seuNome: "Votre prénom", nomePh: "Ex. : Camille", comoReceber: "À emporter ou en livraison ?", retirada: "À emporter",
+      taxaZero: "Livraison sans frais pendant le mois de lancement.", endereco: "Adresse de livraison", enderecoPh: "N°, rue, quartier, étage/appartement",
+      obs: "Commentaire (facultatif)", obsPh: "Ex. : sans oignons, je paie avec un billet de R$ 100",
+      enviar: "Envoyer la commande sur WhatsApp", nota: "Touchez le bouton : WhatsApp s'ouvre avec votre commande prête à envoyer.",
+      pixDinheiro: "en Pix ou en espèces", noCartao: "par carte", adicionar: "Ajouter", esgotado: "Épuisée", esgotada: "épuisée",
+      addAria: n => `Ajouter la pizza ${n}`, menosAria: n => `Retirer une pizza ${n}`, maisAria: n => `Ajouter une autre pizza ${n}`,
+      verPedido: q => q === 1 ? "Voir ma commande (1 pizza)" : `Voir ma commande (${q} pizzas)`,
+      totalCartao: "Total par carte", totalPix: "Total en Pix ou en espèces", subtotal: "Sous-total", promo: "Offre de lancement",
       comboPP: "2 premium pour", comboTT: "2 classiques pour", comboTP: "1 classique + 1 premium pour", e: " et ",
-      dicaT: "Ajoutez une autre classique (2 pour R$ 50) ou une premium (les deux pour R$ 55) pour profiter de la promotion.",
-      dicaP: "Ajoutez une classique (les deux pour R$ 55) ou une autre premium (les deux pour R$ 60) pour profiter de la promotion.",
-      cada: "l'unité, 20 cm", vazio: "Votre commande est vide. Revenez au menu et touchez Ajouter.",
-      erroItens: "Ajoutez au moins une pizza à la commande.", erroNome: "Indiquez votre nom.", erroEnd: "Indiquez l'adresse de livraison.",
+      dicaT: "Ajoutez une autre classique (2 pour R$ 50) ou une premium (les deux pour R$ 55) pour profiter de l'offre.",
+      dicaP: "Ajoutez une classique (les deux pour R$ 55) ou une autre premium (les deux pour R$ 60) pour profiter de l'offre.",
+      cada: "l'unité, 20 cm", vazio: "Votre commande est vide. Choisissez vos pizzas dans la carte.",
+      erroItens: "Ajoutez au moins une pizza.", erroNome: "Merci d'indiquer votre prénom.", erroEnd: "Merci d'indiquer l'adresse de livraison.",
       pizza: n => `Pizza ${n}`, foto: (i, n) => `photo ${i} sur ${n}`, video: n => `Vidéo de la pizza ${n}`,
       fotosDe: n => `Photos de la pizza ${n}`, verFoto: (i, n) => `Voir la photo ${i} sur ${n}`,
-      ola: "Bonjour ! Je viens du menu de Brasilis Gourmet."
+      ola: "Bonjour ! J'ai vu la carte de Brasilis Gourmet et j'ai une question."
     }
   };
 
@@ -832,6 +852,11 @@
   document.querySelectorAll("[data-wa]").forEach(a => {
     a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.ola)}`;
   });
+
+  if (SELETOR_IDIOMA) {
+    $("idiomas").hidden = false;
+    $("idiomas").querySelector(`[data-lang="${LANG}"]`).setAttribute("aria-current", "true");
+  }
 
   $("pagamento").addEventListener("change", atualizarControles);
   desenharCardapio();
