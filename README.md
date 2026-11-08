@@ -4,7 +4,7 @@ Cardápio com pedido pelo WhatsApp. O site inteiro fica em `docs/` (o GitHub Pag
 
 - Editar produtos, preços e WhatsApp: bloco `CONFIGURAÇÃO` no fim de `docs/index.html` (nome e descrição de cada pizza em pt, en, es, fr).
 - Idiomas: segue o idioma do aparelho (pt, en, es, fr; qualquer outro → inglês). Textos no objeto `I18N`. Forçar um idioma: `?lang=es`.
-- Seletor de idioma no rodapé: só para a apresentação. Em produção, `SELETOR_IDIOMA = false`.
+- Seletor de idioma no topo, acima da logo: só para a apresentação. Em produção, `SELETOR_IDIOMA = false`.
 - Mensagens no WhatsApp: o pedido sai sempre em português; para cliente estrangeiro entra "Idioma do cliente: Inglês/Espanhol/Francês" (também no "Falar no WhatsApp"). O cliente estrangeiro vê um aviso de que a equipe responde em português.
 - Fotos: `docs/img/<id>.jpg`. Vídeos: `docs/video/<id>.mp4`.
 

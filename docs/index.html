@@ -194,11 +194,11 @@
   .contato .aviso-idioma { margin: 0 0 14px; }
 
   /* Seletor de idioma (só para apresentação; ver SELETOR_IDIOMA) */
-  .idiomas { margin: 32px 0 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; font-size: 13px; }
+  .idiomas { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0 -12px 10px; font-size: 12px; font-weight: 500; }
   .idiomas[hidden] { display: none; }
-  .idiomas span { width: 100%; text-align: center; color: var(--ink-soft); }
-  .idiomas a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); text-decoration: none; }
-  .idiomas a[aria-current] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .idiomas a { display: inline-flex; align-items: center; min-height: 32px; padding: 0 10px; border: 1.5px solid rgba(27,94,59,.35); border-radius: 999px; color: #1B5E3B; text-decoration: none; }
+  .idiomas a[aria-current] { background: #1B5E3B; border-color: #1B5E3B; color: #F3EADC; font-weight: 600; }
+  @media (max-width: 359px) { .idiomas { gap: 4px; } .idiomas a { padding: 0 8px; } .barra button { font-size: 15px; padding: 15px 14px; gap: 8px; } }
 
   @media (prefers-reduced-motion: reduce) { .barra, .painel, .wa-flutuante, .carrossel .slide { transition: none; } }
 </style>
@@ -206,6 +206,12 @@
 <body>
 
 <header>
+  <nav class="idiomas" id="idiomas" aria-label="Idioma" data-t-aria="idioma" hidden>
+    <a href="?lang=pt" lang="pt-BR" data-lang="pt">Português</a>
+    <a href="?lang=en" lang="en" data-lang="en">English</a>
+    <a href="?lang=es" lang="es" data-lang="es">Español</a>
+    <a href="?lang=fr" lang="fr" data-lang="fr">Français</a>
+  </nav>
   <img alt="Brasilis Gourmet: sabores, cultura, encontros" data-t-alt="logoAlt" width="720" height="533" src="img/logo.jpg" fetchpriority="high">
   <p class="assinatura" data-t-html="assinatura">Uma solução prática para quem tem<br>pressa de aproveitar bem a vida.</p>
 </header>
@@ -279,14 +285,6 @@
     <p data-t="duvidas">Dúvidas ou pedidos maiores? Chame a gente.</p>
     <a class="btn-wa" data-wa href="#" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> <span data-t="falarWa">Falar no WhatsApp</span></a>
   </section>
-
-  <nav class="idiomas" id="idiomas" aria-label="Idioma" data-t-aria="idioma" hidden>
-    <span data-t="idioma">Idioma</span>
-    <a href="?lang=pt" lang="pt-BR" data-lang="pt">Português</a>
-    <a href="?lang=en" lang="en" data-lang="en">English</a>
-    <a href="?lang=es" lang="es" data-lang="es">Español</a>
-    <a href="?lang=fr" lang="fr" data-lang="fr">Français</a>
-  </nav>
 </main>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -558,7 +556,7 @@
       enviar: "Envoyer la commande sur WhatsApp", nota: "Touchez le bouton : WhatsApp s'ouvre avec votre commande prête à envoyer.",
       pixDinheiro: "en Pix ou en espèces", noCartao: "par carte", adicionar: "Ajouter", esgotado: "Épuisée", esgotada: "épuisée",
       addAria: n => `Ajouter la pizza ${n}`, menosAria: n => `Retirer une pizza ${n}`, maisAria: n => `Ajouter une autre pizza ${n}`,
-      verPedido: q => q === 1 ? "Voir ma commande (1 pizza)" : `Voir ma commande (${q} pizzas)`,
+      verPedido: q => q === 1 ? "Ma commande (1 pizza)" : `Ma commande (${q} pizzas)`,
       totalCartao: "Total par carte", totalPix: "Total en Pix ou en espèces", subtotal: "Sous-total", promo: "Offre de lancement",
       comboPP: "2 premium pour", comboTT: "2 classiques pour", comboTP: "1 classique + 1 premium pour", e: " et ",
       dicaT: "Ajoutez une autre classique (2 pour R$ 50) ou une premium (les deux pour R$ 55) pour profiter de l'offre.",
