@@ -196,23 +196,23 @@
 <body>
 
 <header>
-  <img alt="Brasilis Gourmet: sabores, cultura, encontros" width="720" height="533" src="img/logo.jpg" fetchpriority="high">
-  <p class="assinatura">Uma solução prática para quem tem<br>pressa de aproveitar bem a vida.</p>
+  <img alt="Brasilis Gourmet: sabores, cultura, encontros" data-t-alt="logoAlt" width="720" height="533" src="img/logo.jpg" fetchpriority="high">
+  <p class="assinatura" data-t-html="assinatura">Uma solução prática para quem tem<br>pressa de aproveitar bem a vida.</p>
 </header>
 
 <main>
   <section class="intro">
-    <h1>Pizza de fermentação natural, pronta em 5 minutos</h1>
-    <p>As pizzas são congeladas: aqueça na airfryer por 5 minutos e sirva. Molho de tomate artesanal e recheios de primeira qualidade.</p>
+    <h1 data-t="h1">Pizza de fermentação natural, pronta em 5 minutos</h1>
+    <p data-t="intro">As pizzas são congeladas: aqueça na airfryer por 5 minutos e sirva. Molho de tomate artesanal e recheios de primeira qualidade.</p>
     <ul class="tags">
-      <li>Fermentação natural</li>
+      <li data-t="tag1">Fermentação natural</li>
       <li>20 cm</li>
-      <li>Molho artesanal</li>
-      <li>5 min na airfryer</li>
+      <li data-t="tag3">Molho artesanal</li>
+      <li data-t="tag4">5 min na airfryer</li>
     </ul>
   </section>
 
-  <section class="entrega" id="entrega" aria-label="Entrega grátis durante o mês de lançamento">
+  <section class="entrega" id="entrega" aria-label="Entrega grátis durante o mês de lançamento" data-t-aria="entregaAria">
     <div class="cena">
       <svg viewBox="0 0 340 82" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">
         <line x1="0" y1="80" x2="340" y2="80" stroke="#1B5E3B" stroke-width="3" stroke-dasharray="14 10" opacity=".35"/>
@@ -240,20 +240,20 @@
     </div>
     <div class="entrega-corpo">
       <div class="entrega-texto">
-        <p class="entrega-titulo">Entrega grátis</p>
-        <p class="entrega-sub">Neste mês de lançamento, não cobramos taxa de entrega.</p>
+        <p class="entrega-titulo" data-t="entregaGratis">Entrega grátis</p>
+        <p class="entrega-sub" data-t="entregaSub">Neste mês de lançamento, não cobramos taxa de entrega.</p>
       </div>
-      <div class="selo" aria-hidden="true"><b>R$ 0</b><span>de taxa de entrega</span></div>
+      <div class="selo" aria-hidden="true"><b>R$ 0</b><span data-t="seloTaxa">de taxa de entrega</span></div>
     </div>
   </section>
 
   <section class="secao" aria-labelledby="t-novo">
-    <div class="secao-titulo"><h2 id="t-novo">Novidade</h2><span>20 cm</span></div>
+    <div class="secao-titulo"><h2 id="t-novo" data-t="novidade">Novidade</h2><span>20 cm</span></div>
     <div id="lista-novo"></div>
   </section>
 
   <section class="secao" aria-labelledby="t-trad">
-    <div class="secao-titulo"><h2 id="t-trad">Tradicionais</h2><span>20 cm</span></div>
+    <div class="secao-titulo"><h2 id="t-trad" data-t="tradicionais">Tradicionais</h2><span>20 cm</span></div>
     <div id="lista-trad"></div>
   </section>
 
@@ -262,11 +262,11 @@
     <div id="lista-prem"></div>
   </section>
 
-  <p class="aviso">Retirada ou entrega, com horário combinado pelo WhatsApp. No mês de lançamento, a entrega não tem taxa. Todo pedido é confirmado pelo WhatsApp.</p>
+  <p class="aviso" data-t="aviso">Retirada ou entrega, com horário combinado pelo WhatsApp. No mês de lançamento, a entrega não tem taxa. Todo pedido é confirmado pelo WhatsApp.</p>
 
   <section class="contato">
-    <p>Dúvidas ou pedidos maiores? Chame a gente.</p>
-    <a class="btn-wa" data-wa href="#" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> Falar no WhatsApp</a>
+    <p data-t="duvidas">Dúvidas ou pedidos maiores? Chame a gente.</p>
+    <a class="btn-wa" data-wa href="#" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> <span data-t="falarWa">Falar no WhatsApp</span></a>
   </section>
 </main>
 
@@ -274,7 +274,7 @@
   <symbol id="ico-wa" viewBox="0 0 32 32"><path fill="#fff" d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.7c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3z"/><path fill="#1FA855" transform="translate(8.6 8.6) scale(.64)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></symbol>
 </svg>
 
-<a class="wa-flutuante" data-wa href="#" target="_blank" rel="noopener" aria-label="Falar com a Brasilis Gourmet no WhatsApp"><svg width="40" height="40" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg></a>
+<a class="wa-flutuante" data-wa href="#" target="_blank" rel="noopener" aria-label="Falar com a Brasilis Gourmet no WhatsApp" data-t-aria="waAria"><svg width="40" height="40" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg></a>
 
 <div class="barra" id="barra">
   <button type="button" id="abrir-pedido" aria-haspopup="dialog">
@@ -286,17 +286,18 @@
 <div class="fundo" id="fundo"></div>
 <section class="painel" id="painel" role="dialog" aria-modal="true" aria-labelledby="painel-titulo" aria-hidden="true">
   <div class="painel-topo">
-    <h2 id="painel-titulo">Seu pedido</h2>
-    <button type="button" class="fechar" id="fechar" aria-label="Fechar pedido">&times;</button>
+    <h2 id="painel-titulo" data-t="seuPedido">Seu pedido</h2>
+    <button type="button" class="fechar" id="fechar" aria-label="Fechar pedido" data-t-aria="fecharAria">&times;</button>
   </div>
   <div id="itens-pedido"></div>
   <div class="campo" style="margin-top:6px">
-    <label class="rotulo" for="pagamento">Forma de pagamento</label>
+    <label class="rotulo" for="pagamento" data-t="formaPag">Forma de pagamento</label>
+    <!-- value fica em português: é o que vai na mensagem para a equipe -->
     <select id="pagamento">
-      <option>Pix</option>
-      <option>Dinheiro</option>
-      <option>Cartão de débito</option>
-      <option>Cartão de crédito</option>
+      <option value="Pix">Pix</option>
+      <option value="Dinheiro" data-t="dinheiro">Dinheiro</option>
+      <option value="Cartão de débito" data-t="debito">Cartão de débito</option>
+      <option value="Cartão de crédito" data-t="credito">Cartão de crédito</option>
     </select>
   </div>
 
@@ -304,32 +305,32 @@
   <div class="total"><span id="rotulo-total">Total</span><span id="total-pedido">R$ 0,00</span></div>
 
   <div class="campo">
-    <label class="rotulo" for="nome">Seu nome</label>
-    <input type="text" id="nome" autocomplete="name" placeholder="Como podemos te chamar?">
+    <label class="rotulo" for="nome" data-t="seuNome">Seu nome</label>
+    <input type="text" id="nome" autocomplete="name" placeholder="Como podemos te chamar?" data-t-ph="nomePh">
   </div>
 
   <fieldset>
-    <legend>Como você quer receber?</legend>
+    <legend data-t="comoReceber">Como você quer receber?</legend>
     <div class="opcoes">
-      <label><input type="radio" name="modo" value="Retirada" checked> Retirada</label>
-      <label><input type="radio" name="modo" value="Entrega"> Entrega grátis</label>
+      <label><input type="radio" name="modo" value="Retirada" checked> <span data-t="retirada">Retirada</span></label>
+      <label><input type="radio" name="modo" value="Entrega"> <span data-t="entregaGratis">Entrega grátis</span></label>
     </div>
   </fieldset>
-  <p class="taxa-zero" id="taxa-zero" hidden>Entrega sem taxa neste mês de lançamento.</p>
+  <p class="taxa-zero" id="taxa-zero" hidden data-t="taxaZero">Entrega sem taxa neste mês de lançamento.</p>
 
   <div class="campo" id="campo-endereco" hidden>
-    <label class="rotulo" for="endereco">Endereço de entrega</label>
-    <input type="text" id="endereco" autocomplete="street-address" placeholder="Rua, número, bairro e complemento">
+    <label class="rotulo" for="endereco" data-t="endereco">Endereço de entrega</label>
+    <input type="text" id="endereco" autocomplete="street-address" placeholder="Rua, número, bairro e complemento" data-t-ph="enderecoPh">
   </div>
 
   <div class="campo">
-    <label class="rotulo" for="obs">Observações (opcional)</label>
-    <textarea id="obs" placeholder="Ex.: sem cebola, troco para R$ 100"></textarea>
+    <label class="rotulo" for="obs" data-t="obs">Observações (opcional)</label>
+    <textarea id="obs" placeholder="Ex.: sem cebola, troco para R$ 100" data-t-ph="obsPh"></textarea>
   </div>
 
   <div class="erro" id="erro" role="alert"></div>
-  <a class="enviar" id="enviar" href="#" target="_blank" rel="noopener"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> Enviar pedido pelo WhatsApp</a>
-  <p class="nota">Ao tocar no botão, o WhatsApp abre com o pedido pronto. É só enviar.</p>
+  <a class="enviar" id="enviar" href="#" target="_blank" rel="noopener"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> <span data-t="enviar">Enviar pedido pelo WhatsApp</span></a>
+  <p class="nota" data-t="nota">Ao tocar no botão, o WhatsApp abre com o pedido pronto. É só enviar.</p>
 </section>
 
 <script>
@@ -354,28 +355,212 @@
 
   // foto: img/<id>.jpg | video: true = tem vídeo em video/<id>.mp4 | fotos: fotos extras (carrossel)
   // Para marcar como esgotada: esgotado: true
+  // nome e desc em 4 idiomas: pt, en, es, fr. A mensagem para a equipe sempre usa o nome em português.
   const CARDAPIO = [
-    { id: "bacon-alho-poro", cat: "trad", novo: true, video: true, nome: "Bacon com Alho Poró", preco: PRECO_TRADICIONAL,
-      desc: "Muçarela premium, molho de tomate artesanal, bacon crocante e alho poró." },
-    { id: "calabresa", cat: "trad", nome: "Calabresa Especial", preco: PRECO_TRADICIONAL,
-      fotos: ["calabresa-2", "calabresa-3", "calabresa-4"],
-      desc: "Muçarela premium, molho artesanal e calabresa especial." },
-    { id: "frango-cremoso", cat: "trad", video: true, nome: "Frango Cremoso", preco: PRECO_TRADICIONAL,
-      desc: "Muçarela premium, molho artesanal, frango temperado e catupiry original." },
-    { id: "lombo-catupiry", cat: "trad", video: true, nome: "Lombo ao Catupiry", preco: PRECO_TRADICIONAL,
-      desc: "Muçarela premium, molho artesanal, lombo especial e catupiry original." },
-    { id: "quatro-queijos", cat: "trad", video: true, nome: "Quatro Queijos", preco: PRECO_TRADICIONAL,
-      desc: "Molho artesanal e seleção nobre de quatro queijos especiais." },
-    { id: "margherita", cat: "trad", nome: "Margherita", preco: PRECO_TRADICIONAL,
-      desc: "Muçarela premium, molho artesanal, tomates frescos e manjericão." },
-    { id: "carne-seca", cat: "prem", video: true, nome: "Carne-seca", preco: PRECO_PREMIUM,
-      desc: "Muçarela premium, molho artesanal, carne-seca com catupiry original e cebola roxa." },
-    { id: "costela-biquinho", cat: "prem", video: true, nome: "Costela com Pimenta Biquinho", preco: PRECO_PREMIUM,
-      desc: "Muçarela premium, molho artesanal, costela bovina com catupiry original e pimenta biquinho." }
+    { id: "bacon-alho-poro", cat: "trad", novo: true, video: true, preco: PRECO_TRADICIONAL,
+      nome: { pt: "Bacon com Alho Poró", en: "Bacon & Leek", es: "Bacon con Puerro", fr: "Bacon et Poireau" },
+      desc: { pt: "Muçarela premium, molho de tomate artesanal, bacon crocante e alho poró.",
+              en: "Premium mozzarella, artisanal tomato sauce, crispy bacon and leek.",
+              es: "Mozzarella premium, salsa de tomate artesanal, bacon crujiente y puerro.",
+              fr: "Mozzarella premium, sauce tomate artisanale, bacon croustillant et poireau." } },
+    { id: "calabresa", cat: "trad", preco: PRECO_TRADICIONAL, fotos: ["calabresa-2", "calabresa-3", "calabresa-4"],
+      nome: { pt: "Calabresa Especial", en: "Special Calabresa", es: "Calabresa Especial", fr: "Calabresa Spéciale" },
+      desc: { pt: "Muçarela premium, molho artesanal e calabresa especial.",
+              en: "Premium mozzarella, artisanal sauce and special calabresa (Brazilian smoked sausage).",
+              es: "Mozzarella premium, salsa artesanal y calabresa especial (embutido ahumado brasileño).",
+              fr: "Mozzarella premium, sauce artisanale et calabresa spéciale (saucisse fumée brésilienne)." } },
+    { id: "frango-cremoso", cat: "trad", video: true, preco: PRECO_TRADICIONAL,
+      nome: { pt: "Frango Cremoso", en: "Creamy Chicken", es: "Pollo Cremoso", fr: "Poulet Crémeux" },
+      desc: { pt: "Muçarela premium, molho artesanal, frango temperado e catupiry original.",
+              en: "Premium mozzarella, artisanal sauce, seasoned chicken and original Catupiry (Brazilian cream cheese).",
+              es: "Mozzarella premium, salsa artesanal, pollo sazonado y Catupiry original (queso crema brasileño).",
+              fr: "Mozzarella premium, sauce artisanale, poulet assaisonné et Catupiry original (fromage frais brésilien)." } },
+    { id: "lombo-catupiry", cat: "trad", video: true, preco: PRECO_TRADICIONAL,
+      nome: { pt: "Lombo ao Catupiry", en: "Pork Loin & Catupiry", es: "Lomo con Catupiry", fr: "Filet de Porc au Catupiry" },
+      desc: { pt: "Muçarela premium, molho artesanal, lombo especial e catupiry original.",
+              en: "Premium mozzarella, artisanal sauce, special pork loin and original Catupiry.",
+              es: "Mozzarella premium, salsa artesanal, lomo de cerdo especial y Catupiry original.",
+              fr: "Mozzarella premium, sauce artisanale, filet de porc spécial et Catupiry original." } },
+    { id: "quatro-queijos", cat: "trad", video: true, preco: PRECO_TRADICIONAL,
+      nome: { pt: "Quatro Queijos", en: "Four Cheese", es: "Cuatro Quesos", fr: "Quatre Fromages" },
+      desc: { pt: "Molho artesanal e seleção nobre de quatro queijos especiais.",
+              en: "Artisanal sauce and a fine selection of four special cheeses.",
+              es: "Salsa artesanal y selección noble de cuatro quesos especiales.",
+              fr: "Sauce artisanale et une sélection raffinée de quatre fromages spéciaux." } },
+    { id: "margherita", cat: "trad", preco: PRECO_TRADICIONAL,
+      nome: { pt: "Margherita", en: "Margherita", es: "Margherita", fr: "Margherita" },
+      desc: { pt: "Muçarela premium, molho artesanal, tomates frescos e manjericão.",
+              en: "Premium mozzarella, artisanal sauce, fresh tomatoes and basil.",
+              es: "Mozzarella premium, salsa artesanal, tomates frescos y albahaca.",
+              fr: "Mozzarella premium, sauce artisanale, tomates fraîches et basilic." } },
+    { id: "carne-seca", cat: "prem", video: true, preco: PRECO_PREMIUM,
+      nome: { pt: "Carne-seca", en: "Carne-seca (Dried Beef)", es: "Carne Seca", fr: "Bœuf Séché (Carne-seca)" },
+      desc: { pt: "Muçarela premium, molho artesanal, carne-seca com catupiry original e cebola roxa.",
+              en: "Premium mozzarella, artisanal sauce, Brazilian dried beef with original Catupiry and red onion.",
+              es: "Mozzarella premium, salsa artesanal, carne seca con Catupiry original y cebolla morada.",
+              fr: "Mozzarella premium, sauce artisanale, bœuf séché brésilien au Catupiry original et oignon rouge." } },
+    { id: "costela-biquinho", cat: "prem", video: true, preco: PRECO_PREMIUM,
+      nome: { pt: "Costela com Pimenta Biquinho", en: "Beef Rib & Biquinho Pepper", es: "Costilla con Pimiento Biquinho", fr: "Plat de Côtes et Piment Biquinho" },
+      desc: { pt: "Muçarela premium, molho artesanal, costela bovina com catupiry original e pimenta biquinho.",
+              en: "Premium mozzarella, artisanal sauce, beef rib with original Catupiry and biquinho pepper (mild Brazilian pepper).",
+              es: "Mozzarella premium, salsa artesanal, costilla de res con Catupiry original y pimiento biquinho (pimiento suave brasileño).",
+              fr: "Mozzarella premium, sauce artisanale, plat de côtes de bœuf au Catupiry original et piment biquinho (petit piment doux brésilien)." } }
   ];
   /* ================================================== */
 
+  const I18N = {
+    pt: {
+      locale: "pt-BR", nomeIdioma: "Português",
+      title: "Brasilis Gourmet | Pizzas de fermentação natural",
+      descMeta: "Pizza de fermentação natural, pronta em 5 minutos na airfryer. Peça pelo WhatsApp.",
+      logoAlt: "Brasilis Gourmet: sabores, cultura, encontros",
+      assinatura: "Uma solução prática para quem tem<br>pressa de aproveitar bem a vida.",
+      h1: "Pizza de fermentação natural, pronta em 5 minutos",
+      intro: "As pizzas são congeladas: aqueça na airfryer por 5 minutos e sirva. Molho de tomate artesanal e recheios de primeira qualidade.",
+      tag1: "Fermentação natural", tag3: "Molho artesanal", tag4: "5 min na airfryer",
+      entregaAria: "Entrega grátis durante o mês de lançamento", entregaGratis: "Entrega grátis",
+      entregaSub: "Neste mês de lançamento, não cobramos taxa de entrega.", seloTaxa: "de taxa de entrega",
+      novidade: "Novidade", tradicionais: "Tradicionais",
+      aviso: "Retirada ou entrega, com horário combinado pelo WhatsApp. No mês de lançamento, a entrega não tem taxa. Todo pedido é confirmado pelo WhatsApp.",
+      duvidas: "Dúvidas ou pedidos maiores? Chame a gente.", falarWa: "Falar no WhatsApp", waAria: "Falar com a Brasilis Gourmet no WhatsApp",
+      seuPedido: "Seu pedido", fecharAria: "Fechar pedido", formaPag: "Forma de pagamento",
+      dinheiro: "Dinheiro", debito: "Cartão de débito", credito: "Cartão de crédito",
+      seuNome: "Seu nome", nomePh: "Como podemos te chamar?", comoReceber: "Como você quer receber?", retirada: "Retirada",
+      taxaZero: "Entrega sem taxa neste mês de lançamento.", endereco: "Endereço de entrega", enderecoPh: "Rua, número, bairro e complemento",
+      obs: "Observações (opcional)", obsPh: "Ex.: sem cebola, troco para R$ 100",
+      enviar: "Enviar pedido pelo WhatsApp", nota: "Ao tocar no botão, o WhatsApp abre com o pedido pronto. É só enviar.",
+      pixDinheiro: "no Pix ou dinheiro", noCartao: "no débito ou crédito", adicionar: "Adicionar", esgotado: "Esgotado", esgotada: "esgotada",
+      addAria: n => `Adicionar ${n}`, menosAria: n => `Remover uma ${n}`, maisAria: n => `Adicionar mais uma ${n}`,
+      verPedido: q => q === 1 ? "Ver pedido (1 pizza)" : `Ver pedido (${q} pizzas)`,
+      totalCartao: "Total no cartão", totalPix: "Total no Pix ou dinheiro", subtotal: "Subtotal", promo: "Promoção de lançamento",
+      comboPP: "2 premium por", comboTT: "2 tradicionais por", comboTP: "1 tradicional + 1 premium por", e: " e ",
+      dicaT: "Adicione mais uma tradicional (2 por R$ 50) ou uma premium (as duas por R$ 55) para entrar na promoção.",
+      dicaP: "Adicione uma tradicional (as duas por R$ 55) ou outra premium (as duas por R$ 60) para entrar na promoção.",
+      cada: "cada, 20 cm", vazio: "Seu pedido está vazio. Volte ao cardápio e toque em Adicionar.",
+      erroItens: "Adicione ao menos uma pizza ao pedido.", erroNome: "Informe seu nome.", erroEnd: "Informe o endereço de entrega.",
+      pizza: n => `Pizza ${n}`, foto: (i, n) => `foto ${i} de ${n}`, video: n => `Vídeo da pizza ${n}`,
+      fotosDe: n => `Fotos da pizza ${n}`, verFoto: (i, n) => `Ver foto ${i} de ${n}`,
+      ola: "Olá! Vim pelo cardápio da Brasilis Gourmet."
+    },
+    en: {
+      locale: "en-US", nomeIdioma: "English",
+      title: "Brasilis Gourmet | Naturally fermented pizzas",
+      descMeta: "Naturally fermented pizza, ready in 5 minutes in the air fryer. Order on WhatsApp.",
+      logoAlt: "Brasilis Gourmet: flavors, culture, gatherings",
+      assinatura: "A practical solution for those in a<br>hurry to enjoy life to the fullest.",
+      h1: "Naturally fermented pizza, ready in 5 minutes",
+      intro: "Our pizzas come frozen: heat them in the air fryer for 5 minutes and serve. Artisanal tomato sauce and top-quality toppings.",
+      tag1: "Natural fermentation", tag3: "Artisanal sauce", tag4: "5 min in the air fryer",
+      entregaAria: "Free delivery during our launch month", entregaGratis: "Free delivery",
+      entregaSub: "During our launch month, there's no delivery fee.", seloTaxa: "delivery fee",
+      novidade: "New", tradicionais: "Classics",
+      aviso: "Pickup or delivery, with the time arranged on WhatsApp. During our launch month, delivery is free. Every order is confirmed on WhatsApp.",
+      duvidas: "Questions or larger orders? Get in touch.", falarWa: "Chat on WhatsApp", waAria: "Chat with Brasilis Gourmet on WhatsApp",
+      seuPedido: "Your order", fecharAria: "Close order", formaPag: "Payment method",
+      dinheiro: "Cash", debito: "Debit card", credito: "Credit card",
+      seuNome: "Your name", nomePh: "What should we call you?", comoReceber: "How would you like to get it?", retirada: "Pickup",
+      taxaZero: "No delivery fee during our launch month.", endereco: "Delivery address", enderecoPh: "Street, number, neighborhood and apt.",
+      obs: "Notes (optional)", obsPh: "E.g.: no onion, change for R$ 100",
+      enviar: "Send order on WhatsApp", nota: "Tap the button and WhatsApp opens with your order ready. Just hit send.",
+      pixDinheiro: "with Pix or cash", noCartao: "with debit or credit", adicionar: "Add", esgotado: "Sold out", esgotada: "sold out",
+      addAria: n => `Add ${n}`, menosAria: n => `Remove one ${n}`, maisAria: n => `Add one more ${n}`,
+      verPedido: q => q === 1 ? "View order (1 pizza)" : `View order (${q} pizzas)`,
+      totalCartao: "Total by card", totalPix: "Total with Pix or cash", subtotal: "Subtotal", promo: "Launch promotion",
+      comboPP: "2 premium for", comboTT: "2 classics for", comboTP: "1 classic + 1 premium for", e: " and ",
+      dicaT: "Add another classic (2 for R$ 50) or a premium (both for R$ 55) to get the promotion.",
+      dicaP: "Add a classic (both for R$ 55) or another premium (both for R$ 60) to get the promotion.",
+      cada: "each, 20 cm", vazio: "Your order is empty. Go back to the menu and tap Add.",
+      erroItens: "Add at least one pizza to your order.", erroNome: "Please enter your name.", erroEnd: "Please enter the delivery address.",
+      pizza: n => `${n} pizza`, foto: (i, n) => `photo ${i} of ${n}`, video: n => `Video of the ${n} pizza`,
+      fotosDe: n => `Photos of the ${n} pizza`, verFoto: (i, n) => `View photo ${i} of ${n}`,
+      ola: "Hi! I found you through the Brasilis Gourmet menu."
+    },
+    es: {
+      locale: "es", nomeIdioma: "Español",
+      title: "Brasilis Gourmet | Pizzas de fermentación natural",
+      descMeta: "Pizza de fermentación natural, lista en 5 minutos en la freidora de aire. Pide por WhatsApp.",
+      logoAlt: "Brasilis Gourmet: sabores, cultura, encuentros",
+      assinatura: "Una solución práctica para quien tiene<br>prisa por disfrutar bien la vida.",
+      h1: "Pizza de fermentación natural, lista en 5 minutos",
+      intro: "Las pizzas vienen congeladas: caliéntalas en la freidora de aire durante 5 minutos y sirve. Salsa de tomate artesanal e ingredientes de primera calidad.",
+      tag1: "Fermentación natural", tag3: "Salsa artesanal", tag4: "5 min en la freidora de aire",
+      entregaAria: "Envío gratis durante el mes de lanzamiento", entregaGratis: "Envío gratis",
+      entregaSub: "En este mes de lanzamiento, no cobramos tarifa de envío.", seloTaxa: "de tarifa de envío",
+      novidade: "Novedad", tradicionais: "Tradicionales",
+      aviso: "Recogida o envío, con horario acordado por WhatsApp. En el mes de lanzamiento, el envío no tiene costo. Todo pedido se confirma por WhatsApp.",
+      duvidas: "¿Dudas o pedidos más grandes? Escríbenos.", falarWa: "Hablar por WhatsApp", waAria: "Hablar con Brasilis Gourmet por WhatsApp",
+      seuPedido: "Tu pedido", fecharAria: "Cerrar pedido", formaPag: "Forma de pago",
+      dinheiro: "Efectivo", debito: "Tarjeta de débito", credito: "Tarjeta de crédito",
+      seuNome: "Tu nombre", nomePh: "¿Cómo te llamamos?", comoReceber: "¿Cómo quieres recibirlo?", retirada: "Recogida",
+      taxaZero: "Envío sin costo en este mes de lanzamiento.", endereco: "Dirección de entrega", enderecoPh: "Calle, número, barrio y complemento",
+      obs: "Observaciones (opcional)", obsPh: "Ej.: sin cebolla, cambio para R$ 100",
+      enviar: "Enviar pedido por WhatsApp", nota: "Al tocar el botón, WhatsApp se abre con el pedido listo. Solo tienes que enviarlo.",
+      pixDinheiro: "con Pix o efectivo", noCartao: "con débito o crédito", adicionar: "Agregar", esgotado: "Agotado", esgotada: "agotada",
+      addAria: n => `Agregar ${n}`, menosAria: n => `Quitar una ${n}`, maisAria: n => `Agregar una más ${n}`,
+      verPedido: q => q === 1 ? "Ver pedido (1 pizza)" : `Ver pedido (${q} pizzas)`,
+      totalCartao: "Total con tarjeta", totalPix: "Total con Pix o efectivo", subtotal: "Subtotal", promo: "Promoción de lanzamiento",
+      comboPP: "2 premium por", comboTT: "2 tradicionales por", comboTP: "1 tradicional + 1 premium por", e: " y ",
+      dicaT: "Agrega otra tradicional (2 por R$ 50) o una premium (las dos por R$ 55) para entrar en la promoción.",
+      dicaP: "Agrega una tradicional (las dos por R$ 55) u otra premium (las dos por R$ 60) para entrar en la promoción.",
+      cada: "c/u, 20 cm", vazio: "Tu pedido está vacío. Vuelve al menú y toca Agregar.",
+      erroItens: "Agrega al menos una pizza al pedido.", erroNome: "Escribe tu nombre.", erroEnd: "Escribe la dirección de entrega.",
+      pizza: n => `Pizza ${n}`, foto: (i, n) => `foto ${i} de ${n}`, video: n => `Video de la pizza ${n}`,
+      fotosDe: n => `Fotos de la pizza ${n}`, verFoto: (i, n) => `Ver foto ${i} de ${n}`,
+      ola: "¡Hola! Vengo del menú de Brasilis Gourmet."
+    },
+    fr: {
+      locale: "fr-FR", nomeIdioma: "Français",
+      title: "Brasilis Gourmet | Pizzas à fermentation naturelle",
+      descMeta: "Pizza à fermentation naturelle, prête en 5 minutes au air fryer. Commandez sur WhatsApp.",
+      logoAlt: "Brasilis Gourmet : saveurs, culture, rencontres",
+      assinatura: "Une solution pratique pour ceux qui sont<br>pressés de bien profiter de la vie.",
+      h1: "Pizza à fermentation naturelle, prête en 5 minutes",
+      intro: "Nos pizzas sont surgelées : réchauffez-les 5 minutes au air fryer et servez. Sauce tomate artisanale et garnitures de première qualité.",
+      tag1: "Fermentation naturelle", tag3: "Sauce artisanale", tag4: "5 min au air fryer",
+      entregaAria: "Livraison gratuite pendant le mois de lancement", entregaGratis: "Livraison gratuite",
+      entregaSub: "Pendant ce mois de lancement, la livraison est offerte.", seloTaxa: "de frais de livraison",
+      novidade: "Nouveauté", tradicionais: "Classiques",
+      aviso: "À emporter ou en livraison, avec l'horaire convenu sur WhatsApp. Pendant le mois de lancement, la livraison est gratuite. Chaque commande est confirmée sur WhatsApp.",
+      duvidas: "Des questions ou une grosse commande ? Contactez-nous.", falarWa: "Écrire sur WhatsApp", waAria: "Écrire à Brasilis Gourmet sur WhatsApp",
+      seuPedido: "Votre commande", fecharAria: "Fermer la commande", formaPag: "Mode de paiement",
+      dinheiro: "Espèces", debito: "Carte de débit", credito: "Carte de crédit",
+      seuNome: "Votre nom", nomePh: "Comment vous appeler ?", comoReceber: "Comment souhaitez-vous la recevoir ?", retirada: "À emporter",
+      taxaZero: "Livraison sans frais pendant ce mois de lancement.", endereco: "Adresse de livraison", enderecoPh: "Rue, numéro, quartier et complément",
+      obs: "Remarques (facultatif)", obsPh: "Ex. : sans oignon, monnaie sur R$ 100",
+      enviar: "Envoyer la commande sur WhatsApp", nota: "En touchant le bouton, WhatsApp s'ouvre avec la commande prête. Il suffit de l'envoyer.",
+      pixDinheiro: "en Pix ou espèces", noCartao: "par carte de débit ou crédit", adicionar: "Ajouter", esgotado: "Épuisé", esgotada: "épuisée",
+      addAria: n => `Ajouter ${n}`, menosAria: n => `Retirer une ${n}`, maisAria: n => `Ajouter une autre ${n}`,
+      verPedido: q => q === 1 ? "Voir la commande (1 pizza)" : `Voir la commande (${q} pizzas)`,
+      totalCartao: "Total par carte", totalPix: "Total en Pix ou espèces", subtotal: "Sous-total", promo: "Promotion de lancement",
+      comboPP: "2 premium pour", comboTT: "2 classiques pour", comboTP: "1 classique + 1 premium pour", e: " et ",
+      dicaT: "Ajoutez une autre classique (2 pour R$ 50) ou une premium (les deux pour R$ 55) pour profiter de la promotion.",
+      dicaP: "Ajoutez une classique (les deux pour R$ 55) ou une autre premium (les deux pour R$ 60) pour profiter de la promotion.",
+      cada: "l'unité, 20 cm", vazio: "Votre commande est vide. Revenez au menu et touchez Ajouter.",
+      erroItens: "Ajoutez au moins une pizza à la commande.", erroNome: "Indiquez votre nom.", erroEnd: "Indiquez l'adresse de livraison.",
+      pizza: n => `Pizza ${n}`, foto: (i, n) => `photo ${i} sur ${n}`, video: n => `Vidéo de la pizza ${n}`,
+      fotosDe: n => `Photos de la pizza ${n}`, verFoto: (i, n) => `Voir la photo ${i} sur ${n}`,
+      ola: "Bonjour ! Je viens du menu de Brasilis Gourmet."
+    }
+  };
+
+  // Idioma principal do aparelho (pt-BR e pt-PT viram "pt"); fora dos 4 idiomas, inglês.
+  // ?lang=es na URL força um idioma (útil para mostrar ao cliente).
+  const escolherIdioma = tag => { const c = String(tag || "").slice(0, 2).toLowerCase(); return I18N[c] ? c : "en"; };
+  const LANG = escolherIdioma(new URLSearchParams(location.search).get("lang") || (navigator.languages && navigator.languages[0]) || navigator.language);
+  const t = I18N[LANG];
+  CARDAPIO.forEach(p => { p.nomePt = p.nome.pt; p.nome = p.nome[LANG]; p.desc = p.desc[LANG]; });
+
+  document.documentElement.lang = t.locale;
+  document.title = t.title;
+  document.querySelector('meta[name="description"]').content = t.descMeta;
+  document.querySelectorAll("[data-t]").forEach(el => { el.textContent = t[el.dataset.t]; });
+  document.querySelectorAll("[data-t-html]").forEach(el => { el.innerHTML = t[el.dataset.tHtml]; });
+  document.querySelectorAll("[data-t-ph]").forEach(el => { el.placeholder = t[el.dataset.tPh]; });
+  document.querySelectorAll("[data-t-aria]").forEach(el => { el.setAttribute("aria-label", t[el.dataset.tAria]); });
+  document.querySelectorAll("[data-t-alt]").forEach(el => { el.alt = t[el.dataset.tAlt]; });
+
   const $ = id => document.getElementById(id);
+  // Preço sempre no formato brasileiro (R$ 29,00) em qualquer idioma: a cobrança é em reais.
   const brl = v => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   const reduzir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   CARDAPIO.forEach(p => { p.cartao = p.cat === "trad" ? CARTAO_TRADICIONAL : CARTAO_PREMIUM; });
@@ -424,22 +609,22 @@
 
   function fotoHtml(p, primeira) {
     const base = fotoBase(p, primeira);
-    if (p.esgotado) return `<div class="com-selo esgotada">${base}<span class="selo-novo esgotado-selo">Esgotado</span></div>`;
+    if (p.esgotado) return `<div class="com-selo esgotada">${base}<span class="selo-novo esgotado-selo">${t.esgotado}</span></div>`;
     if (!p.novo) return base;
-    return `<div class="com-selo">${base}<span class="selo-novo"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z"/></svg>Novidade</span></div>`;
+    return `<div class="com-selo">${base}<span class="selo-novo"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z"/></svg>${t.novidade}</span></div>`;
   }
 
   function fotoBase(p, primeira) {
     const lazy = primeira ? "" : ' loading="lazy"';
-    const img = `<img class="foto" src="img/${p.id}.jpg" alt="Pizza ${p.nome}${p.esgotado ? " (esgotada)" : ""}" width="800" height="600"${lazy} decoding="async">`;
+    const img = `<img class="foto" src="img/${p.id}.jpg" alt="${t.pizza(p.nome)}${p.esgotado ? ` (${t.esgotada})` : ""}" width="800" height="600"${lazy} decoding="async">`;
     if (p.video) return p.esgotado ? `<div class="midia">${img}</div>` : `<div class="midia" data-video="video/${p.id}.mp4">${img}
-      <video muted loop playsinline webkit-playsinline disableRemotePlayback preload="none" aria-label="Vídeo da pizza ${p.nome}" tabindex="-1"></video>
+      <video muted loop playsinline webkit-playsinline disableRemotePlayback preload="none" aria-label="${t.video(p.nome)}" tabindex="-1"></video>
     </div>`;
     if (!p.fotos) return img;
     const todas = [p.id, ...p.fotos];
-    return `<div class="carrossel" data-carrossel role="group" aria-roledescription="carrossel" aria-label="Fotos da pizza ${p.nome}">
-      ${todas.map((f, i) => `<img class="slide${i === 0 ? " ativo" : ""}" src="img/${f}.jpg" alt="Pizza ${p.nome}, foto ${i + 1} de ${todas.length}" width="800" height="600"${i || !primeira ? ' loading="lazy"' : ""} decoding="async">`).join("")}
-      <div class="pontos">${todas.map((_, i) => `<button type="button" class="ponto${i === 0 ? " ativo" : ""}" data-ir="${i}" aria-label="Ver foto ${i + 1} de ${todas.length}"></button>`).join("")}</div>
+    return `<div class="carrossel" data-carrossel role="group" aria-roledescription="carrossel" aria-label="${t.fotosDe(p.nome)}">
+      ${todas.map((f, i) => `<img class="slide${i === 0 ? " ativo" : ""}" src="img/${f}.jpg" alt="${t.pizza(p.nome)}, ${t.foto(i + 1, todas.length)}" width="800" height="600"${i || !primeira ? ' loading="lazy"' : ""} decoding="async">`).join("")}
+      <div class="pontos">${todas.map((_, i) => `<button type="button" class="ponto${i === 0 ? " ativo" : ""}" data-ir="${i}" aria-label="${t.verFoto(i + 1, todas.length)}"></button>`).join("")}</div>
     </div>`;
   }
 
@@ -509,8 +694,8 @@
             <p>${p.desc}</p>
             <div class="rodape-item">
               <span class="precos">
-                <span class="preco">${brl(p.preco)} <small>no Pix ou dinheiro</small></span>
-                <span class="preco cartao">${brl(p.cartao)} <small>no débito ou crédito</small></span>
+                <span class="preco">${brl(p.preco)} <small>${t.pixDinheiro}</small></span>
+                <span class="preco cartao">${brl(p.cartao)} <small>${t.noCartao}</small></span>
               </span>
               <span data-controle="${p.id}"></span>
             </div>
@@ -524,13 +709,13 @@
   }
 
   function controleHtml(p) {
-    if (p.esgotado) return `<span class="tag-esgotado">Esgotado</span>`;
+    if (p.esgotado) return `<span class="tag-esgotado">${t.esgotado}</span>`;
     const q = carrinho[p.id] || 0;
-    if (!q) return `<button type="button" class="btn-add" data-acao="mais" data-id="${p.id}" aria-label="Adicionar ${p.nome}">Adicionar</button>`;
+    if (!q) return `<button type="button" class="btn-add" data-acao="mais" data-id="${p.id}" aria-label="${t.addAria(p.nome)}">${t.adicionar}</button>`;
     return `<span class="stepper">
-      <button type="button" data-acao="menos" data-id="${p.id}" aria-label="Remover uma ${p.nome}">&minus;</button>
+      <button type="button" data-acao="menos" data-id="${p.id}" aria-label="${t.menosAria(p.nome)}">&minus;</button>
       <output aria-live="polite">${q}</output>
-      <button type="button" data-acao="mais" data-id="${p.id}" aria-label="Adicionar mais uma ${p.nome}">+</button>
+      <button type="button" data-acao="mais" data-id="${p.id}" aria-label="${t.maisAria(p.nome)}">+</button>
     </span>`;
   }
 
@@ -542,35 +727,36 @@
     const qtd = itens.reduce((s, p) => s + carrinho[p.id], 0);
     const c = calcular();
     $("barra").classList.toggle("visivel", qtd > 0);
-    $("barra-qtd").textContent = qtd === 1 ? "Ver pedido (1 pizza)" : `Ver pedido (${qtd} pizzas)`;
+    $("barra-qtd").textContent = t.verPedido(qtd);
     $("barra-total").textContent = brl(c.total);
     $("total-pedido").textContent = brl(c.total);
-    $("rotulo-total").textContent = pagaCartao() ? "Total no cartão" : "Total no Pix ou dinheiro";
+    $("rotulo-total").textContent = pagaCartao() ? t.totalCartao : t.totalPix;
     document.body.classList.toggle("com-pedido", qtd > 0);
     let r = "";
     if (c.desconto > 0) {
       const partes = [];
-      if (c.combosPP) partes.push(c.combosPP === 1 ? "2 premium por R$ 60" : `${c.combosPP}x (2 premium por R$ 60)`);
-      if (c.combosTT) partes.push(c.combosTT === 1 ? "2 tradicionais por R$ 50" : `${c.combosTT}x (2 tradicionais por R$ 50)`);
-      if (c.combosTP) partes.push(c.combosTP === 1 ? "1 tradicional + 1 premium por R$ 55" : `${c.combosTP}x (1 tradicional + 1 premium por R$ 55)`);
-      r += `<div class="r"><span>Subtotal</span><span>${brl(c.sub)}</span></div>`;
-      r += `<div class="r desc"><span>Promoção de lançamento</span><span>&minus;${brl(c.desconto)}</span></div>`;
-      r += `<div class="r"><span>${partes.join(" e ")}</span><span></span></div>`;
+      const combo = (q, txt, v) => { if (q) partes.push(q === 1 ? `${txt} ${brl(v)}` : `${q}x (${txt} ${brl(v)})`); };
+      combo(c.combosPP, t.comboPP, COMBO_2_PREMIUM);
+      combo(c.combosTT, t.comboTT, COMBO_2_TRADICIONAIS);
+      combo(c.combosTP, t.comboTP, COMBO_TRADICIONAL_PREMIUM);
+      r += `<div class="r"><span>${t.subtotal}</span><span>${brl(c.sub)}</span></div>`;
+      r += `<div class="r desc"><span>${t.promo}</span><span>&minus;${brl(c.desconto)}</span></div>`;
+      r += `<div class="r"><span>${partes.join(t.e)}</span><span></span></div>`;
     }
     if (PROMO_ATIVA && qtd === 1) {
-      r += `<p class="dica">${c.T === 1 ? "Adicione mais uma tradicional (2 por R$ 50) ou uma premium (as duas por R$ 55) para entrar na promoção." : "Adicione uma tradicional (as duas por R$ 55) ou outra premium (as duas por R$ 60) para entrar na promoção."}</p>`;
+      r += `<p class="dica">${c.T === 1 ? t.dicaT : t.dicaP}</p>`;
     }
     $("resumo").innerHTML = r;
 
     $("itens-pedido").innerHTML = itens.length ? itens.map(p => `
       <div class="linha">
-        <div><div class="nome">${p.nome}</div><div class="sub">${brl(precoDe(p))} cada, 20 cm</div></div>
+        <div><div class="nome">${p.nome}</div><div class="sub">${brl(precoDe(p))} ${t.cada}</div></div>
         <span class="stepper">
-          <button type="button" data-acao="menos" data-id="${p.id}" aria-label="Remover uma ${p.nome}">&minus;</button>
+          <button type="button" data-acao="menos" data-id="${p.id}" aria-label="${t.menosAria(p.nome)}">&minus;</button>
           <output>${carrinho[p.id]}</output>
-          <button type="button" data-acao="mais" data-id="${p.id}" aria-label="Adicionar mais uma ${p.nome}">+</button>
+          <button type="button" data-acao="mais" data-id="${p.id}" aria-label="${t.maisAria(p.nome)}">+</button>
         </span>
-      </div>`).join("") : `<p class="vazio">Seu pedido está vazio. Volte ao cardápio e toque em Adicionar.</p>`;
+      </div>`).join("") : `<p class="vazio">${t.vazio}</p>`;
     salvar();
     if (!itens.length && $("painel").classList.contains("aberto")) fecharPainel();
   }
@@ -617,7 +803,7 @@
       "*Novo pedido: Brasilis Gourmet*", "",
       `*Cliente:* ${$("nome").value.trim()}`, "",
       "*Itens (pizza de fermentação natural, 20 cm):*",
-      ...itens.map(p => `${carrinho[p.id]}x ${p.nome} (${brl(precoDe(p) * carrinho[p.id])})`), "",
+      ...itens.map(p => `${carrinho[p.id]}x ${p.nomePt} (${brl(precoDe(p) * carrinho[p.id])})`), "",
       `*Subtotal:* ${brl(c.sub)}`
     ];
     if (c.desconto > 0) linhas.push(`*Promoção de lançamento:* -${brl(c.desconto)}`);
@@ -626,15 +812,16 @@
     linhas.push(`*Pagamento:* ${$("pagamento").value}`);
     const obs = $("obs").value.trim();
     if (obs) linhas.push(`*Observações:* ${obs}`);
+    if (LANG !== "pt") linhas.push(`*Idioma do cliente:* ${t.nomeIdioma}`);
     return linhas.join("\n");
   }
 
   $("enviar").addEventListener("click", e => {
     const itens = CARDAPIO.filter(p => carrinho[p.id]);
     let erro = "";
-    if (!itens.length) erro = "Adicione ao menos uma pizza ao pedido.";
-    else if (!$("nome").value.trim()) erro = "Informe seu nome.";
-    else if (modo().startsWith("Entrega") && !$("endereco").value.trim()) erro = "Informe o endereço de entrega.";
+    if (!itens.length) erro = t.erroItens;
+    else if (!$("nome").value.trim()) erro = t.erroNome;
+    else if (modo().startsWith("Entrega") && !$("endereco").value.trim()) erro = t.erroEnd;
     $("erro").textContent = erro;
     if (erro) { e.preventDefault(); return; }
     $("enviar").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(montarMensagem())}`;
@@ -643,7 +830,7 @@
   });
 
   document.querySelectorAll("[data-wa]").forEach(a => {
-    a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent("Olá! Vim pelo cardápio da Brasilis Gourmet.")}`;
+    a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.ola)}`;
   });
 
   $("pagamento").addEventListener("change", atualizarControles);
