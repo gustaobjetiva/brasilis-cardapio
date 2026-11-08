@@ -190,6 +190,9 @@
   }
   .nota { font-size: 12px; color: var(--ink-soft); text-align: center; margin: 10px 0 0; }
 
+  .aviso-idioma { margin: 14px 0 0; padding: 10px 12px; border-radius: 10px; border: 1px dashed var(--line); background: var(--surface); color: var(--ink-soft); font-size: 13px; line-height: 1.45; text-align: left; }
+  .contato .aviso-idioma { margin: 0 0 14px; }
+
   /* Seletor de idioma (só para apresentação; ver SELETOR_IDIOMA) */
   .idiomas { margin: 32px 0 0; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; font-size: 13px; }
   .idiomas[hidden] { display: none; }
@@ -272,6 +275,7 @@
   <p class="aviso" data-t="aviso">Retirada ou entrega, com horário combinado pelo WhatsApp. No mês de lançamento, a entrega não tem taxa. Todo pedido é confirmado pelo WhatsApp.</p>
 
   <section class="contato">
+    <p class="aviso-idioma" data-t="avisoIdioma" hidden></p>
     <p data-t="duvidas">Dúvidas ou pedidos maiores? Chame a gente.</p>
     <a class="btn-wa" data-wa href="#" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> <span data-t="falarWa">Falar no WhatsApp</span></a>
   </section>
@@ -343,6 +347,7 @@
     <textarea id="obs" placeholder="Ex.: sem cebola, troco para R$ 100" data-t-ph="obsPh"></textarea>
   </div>
 
+  <p class="aviso-idioma" data-t="avisoIdioma" hidden></p>
   <div class="erro" id="erro" role="alert"></div>
   <a class="enviar" id="enviar" href="#" target="_blank" rel="noopener"><svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-wa"/></svg> <span data-t="enviar">Enviar pedido pelo WhatsApp</span></a>
   <p class="nota" data-t="nota">Ao tocar no botão, o WhatsApp abre com o pedido pronto. É só enviar.</p>
@@ -429,7 +434,7 @@
 
   const I18N = {
     pt: {
-      locale: "pt-BR", nomeIdioma: "Português", idioma: "Idioma",
+      locale: "pt-BR", nomeIdioma: "Português", avisoIdioma: "", idioma: "Idioma",
       title: "Brasilis Gourmet | Pizzas de fermentação natural",
       descMeta: "Pizza de fermentação natural, pronta em 5 minutos na airfryer. Peça pelo WhatsApp.",
       logoAlt: "Brasilis Gourmet: sabores, cultura, encontros",
@@ -462,7 +467,8 @@
       ola: "Olá! Vim pelo cardápio da Brasilis Gourmet."
     },
     en: {
-      locale: "en", nomeIdioma: "English", idioma: "Language",
+      locale: "en", nomeIdioma: "Inglês",
+      avisoIdioma: "Please note: our team speaks Portuguese, so our replies on WhatsApp will be in Portuguese. A translation app can help.", idioma: "Language",
       title: "Brasilis Gourmet | Sourdough Pizza",
       descMeta: "Sourdough pizza, ready in 5 minutes in the air fryer. Order on WhatsApp.",
       logoAlt: "Brasilis Gourmet: sabores, cultura, encontros",
@@ -496,7 +502,8 @@
     },
     // Espanhol neutro: serve para Espanha e Argentina (sem "vos" nem termos de um país só)
     es: {
-      locale: "es", nomeIdioma: "Español", idioma: "Idioma",
+      locale: "es", nomeIdioma: "Espanhol",
+      avisoIdioma: "Importante: nuestro equipo habla portugués, por eso las respuestas por WhatsApp serán en portugués. Una app de traducción puede ser útil.", idioma: "Idioma",
       title: "Brasilis Gourmet | Pizzas de masa madre",
       descMeta: "Pizza de masa madre, lista en 5 minutos en la freidora de aire. Pedidos por WhatsApp.",
       logoAlt: "Brasilis Gourmet: sabores, cultura, encontros",
@@ -529,7 +536,8 @@
       ola: "¡Hola! Vi la carta de Brasilis Gourmet y quería hacer una consulta."
     },
     fr: {
-      locale: "fr", nomeIdioma: "Français", idioma: "Langue",
+      locale: "fr", nomeIdioma: "Francês",
+      avisoIdioma: "À noter : notre équipe parle portugais, nos réponses sur WhatsApp seront donc en portugais. Une application de traduction peut vous aider.", idioma: "Langue",
       title: "Brasilis Gourmet | Pizzas au levain",
       descMeta: "Pizza au levain, prête en 5 minutes à la friteuse sans huile. Commandez sur WhatsApp.",
       logoAlt: "Brasilis Gourmet : sabores, cultura, encontros",
@@ -850,8 +858,11 @@
   });
 
   document.querySelectorAll("[data-wa]").forEach(a => {
-    a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t.ola)}`;
+    a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(LANG === "pt" ? t.ola : `${t.ola}\n\n(Idioma do cliente: ${t.nomeIdioma})`)}`;
   });
+
+  // Cliente estrangeiro: avisa que a equipe responde em português
+  if (LANG !== "pt") document.querySelectorAll(".aviso-idioma").forEach(el => { el.hidden = false; });
 
   if (SELETOR_IDIOMA) {
     $("idiomas").hidden = false;
